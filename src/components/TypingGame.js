@@ -4,7 +4,8 @@ import { words } from '../words';
 export default function TypingGame() {
   const [shortList, setShortList] = useState([]);
   const [currentWord, setCurrentWord] = useState([]);
-  const [currentLetter, setCurrentLetter] = useState('');
+  const [currentTypedLetter, setCurrentTypedLetter] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
   
   useEffect(() => {
     let tempList = [];
@@ -14,13 +15,16 @@ export default function TypingGame() {
     setShortList(tempList);
     setCurrentWord(tempList[tempList.length - 1].split(''))
     window.addEventListener('keyup', event => {
-      setCurrentLetter(event.key);
+      setCurrentTypedLetter(event.key);
     })
   }, [])
 
   useEffect(() => {
-    console.log(currentLetter);
-  }, [currentLetter])
+    if (currentTypedLetter === currentWord[currentIndex]) {
+      console.log(currentWord[currentIndex]);
+      setCurrentIndex(currentIndex + 1);
+    }
+  }, [currentTypedLetter])
 
   return (
     <section>
