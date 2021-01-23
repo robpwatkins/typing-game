@@ -25,14 +25,15 @@ export default function TypingGame() {
       if (currentIndex === currentWord.length - 1) {
         let shortListCopy = shortList.slice();
         shortListCopy.pop();
-        console.log(shortListCopy);
         setShortList(shortListCopy);
-        setCurrentWord([shortListCopy[shortListCopy.length - 1]])
-      }
+        setCurrentWord(shortListCopy[shortListCopy.length - 1].split(''));
+        setCurrentIndex(0);
+      } else 
       setCurrentIndex(currentIndex + 1);
     }
   }, [currentTypedLetter])
-
+  
+  // console.log(currentWord, currentIndex);
   return (
     <section>
       {shortList.map((word, index) => {
