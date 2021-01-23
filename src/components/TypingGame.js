@@ -48,7 +48,14 @@ export default function TypingGame() {
               ? word
               : currentWord.map((letter, index) => {
                 return (
-                  <span key={index}>{letter}</span>
+                  <span 
+                    key={index}
+                    style={currentIndex >= index + 1 
+                      ? {fontWeight: "bold"} 
+                      : null}
+                  >
+                    {letter}
+                  </span>
                 )
               })
             }</p>
