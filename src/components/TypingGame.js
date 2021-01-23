@@ -24,11 +24,15 @@ export default function TypingGame() {
     <section>
       {shortList.map((word, index) => {
         return (
-          <h3 key={index}>{
+          <p key={index}>{
             index < shortList.length - 1 
               ? word
-              : currentWord
-            }</h3>
+              : currentWord.map((letter, index) => {
+                return (
+                  <span key={index}>{letter}</span>
+                )
+              })
+            }</p>
         )
       })}
     </section>
