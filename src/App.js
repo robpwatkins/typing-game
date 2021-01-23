@@ -1,11 +1,10 @@
 import './App.css';
-import { words } from './words';
+import TypingGame from './components/TypingGame';
 
 function App() {
-  console.log(words[0]);
   return (
     <div className="App">
-      <h3>{words[0]}</h3>
+      <TypingGame />
     </div>
   );
 }
