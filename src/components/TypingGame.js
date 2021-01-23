@@ -22,6 +22,13 @@ export default function TypingGame() {
   useEffect(() => {
     if (currentTypedLetter === currentWord[currentIndex]) {
       console.log(currentWord[currentIndex]);
+      if (currentIndex === currentWord.length - 1) {
+        let shortListCopy = shortList.slice();
+        shortListCopy.pop();
+        console.log(shortListCopy);
+        setShortList(shortListCopy);
+        setCurrentWord([shortListCopy[shortListCopy.length - 1]])
+      }
       setCurrentIndex(currentIndex + 1);
     }
   }, [currentTypedLetter])
