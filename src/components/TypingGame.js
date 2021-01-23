@@ -6,7 +6,7 @@ export default function TypingGame() {
   const [currentWord, setCurrentWord] = useState([]);
   
 
-  
+
   useEffect(() => {
     let tempList = [];
     for (let i = 0; i <=10; i++) {
@@ -24,7 +24,11 @@ export default function TypingGame() {
     <section>
       {shortList.map((word, index) => {
         return (
-          <h3 key={index}>{word}</h3>
+          <h3 key={index}>{
+            index < shortList.length - 1 
+              ? word
+              : currentWord
+            }</h3>
         )
       })}
     </section>
