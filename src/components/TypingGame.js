@@ -21,7 +21,7 @@ export default function TypingGame() {
 
   useEffect(() => {
     if (currentTypedLetter === currentWord[currentIndex]) {
-      console.log(currentWord[currentIndex]);
+      // console.log(currentWord[currentIndex]);
       if (currentIndex === currentWord.length - 1) {
         if (shortList.length === 1) {
           setCurrentWord(['You Did It!!!']);
@@ -38,7 +38,6 @@ export default function TypingGame() {
     }
   }, [currentTypedLetter, currentWord, currentIndex, shortList])
   
-  // console.log(currentWord, currentIndex);
   return (
     <section>
       {shortList.map((word, index) => {
