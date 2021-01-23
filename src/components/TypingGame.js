@@ -23,15 +23,20 @@ export default function TypingGame() {
     if (currentTypedLetter === currentWord[currentIndex]) {
       console.log(currentWord[currentIndex]);
       if (currentIndex === currentWord.length - 1) {
-        let shortListCopy = shortList.slice();
-        shortListCopy.pop();
-        setShortList(shortListCopy);
-        setCurrentWord(shortListCopy[shortListCopy.length - 1].split(''));
-        setCurrentIndex(0);
+        if (shortList.length === 1) {
+          setCurrentWord(['You Did It!!!']);
+        }
+        else {
+          let shortListCopy = shortList.slice();
+          shortListCopy.pop();
+          setShortList(shortListCopy);
+          setCurrentWord(shortListCopy[shortListCopy.length - 1].split(''));
+          setCurrentIndex(0);
+        }
       } else 
       setCurrentIndex(currentIndex + 1);
     }
-  }, [currentTypedLetter])
+  }, [currentTypedLetter, currentWord, currentIndex, shortList])
   
   // console.log(currentWord, currentIndex);
   return (
