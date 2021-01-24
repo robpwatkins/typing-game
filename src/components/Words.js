@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { words } from '../words';
+import React from 'react';
 
 export default function Words({ wordList, letterIndex }) {
   

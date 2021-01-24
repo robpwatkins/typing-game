@@ -21,7 +21,7 @@
 
 aside {
   position: absolute;
-  top: 0px;
+  top: 40px;
   left: 50px;
 }
 
@@ -33,6 +33,9 @@ aside {
   position: relative;
   top: -690px;
   justify-content: flex-start;
+}
+
+.scrolling {
   animation: scroll 35s linear;
 }
 
