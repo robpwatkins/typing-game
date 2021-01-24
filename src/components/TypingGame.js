@@ -15,20 +15,28 @@ export default function TypingGame() {
       } else
       setLetterIndex(letterIndex + 1);
     }
-    console.log(event.key, words[wordIndex].charAt(letterIndex));
   }, [letterIndex, wordIndex])
   
   useEffect(() => {
     window.addEventListener('keyup', handleKeyUp);
     return () => window.removeEventListener('keyup', handleKeyUp)
   }, [handleKeyUp])
-
+  
+  console.log(words[wordIndex].charAt(letterIndex));
   return (
     <section>
       {words.map((word, index) => {
-        if (index >= wordIndex) {
+        if (index > wordIndex) {
           return (
             <p key={index}>{word}</p>
+          )
+        } else if (index === wordIndex) {
+          return (
+            word.split().map((letter, index) => {
+              return (
+                <span key={index}>{letter}</span>
+              )
+            })
           )
         }
       })}
