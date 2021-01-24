@@ -32,9 +32,14 @@ export default function TypingGame() {
           )
         } else if (index === wordIndex) {
           return (
-            word.split().map((letter, index) => {
+            word.split('').map((letter, idx) => {
               return (
-                <span key={index}>{letter}</span>
+                <span 
+                  key={idx}
+                  style={idx < letterIndex ? {fontWeight: "bold"} : null}
+                >
+                  {letter}
+                </span>
               )
             })
           )
