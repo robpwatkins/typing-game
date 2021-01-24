@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { words } from '../words';
 import { createShuffledArr } from '../createShuffledArr';
 import Level from './Level';
+import CurrentWords from './CurrentWords';
 
 export default function TypingGame() {
   const [letterIndex, setLetterIndex] = useState(0);
@@ -26,7 +27,7 @@ export default function TypingGame() {
       } else
       setLetterIndex(letterIndex + 1);
     }
-  }, [letterIndex, wordList])
+  }, [letterIndex, wordList, level])
   
   useEffect(() => {
     setWordList(createShuffledArr(10, words));
@@ -40,26 +41,7 @@ export default function TypingGame() {
   return (
     <section className="typing-game ">
       <Level level={level} />
-      {wordList.map((word, index) => {
-        return (
-          <p key={index}>{
-            index < wordList.length - 1
-            ? word
-            : (
-              wordList[wordList.length - 1].split('').map((letter, index) => {
-                return (
-                  <span
-                    key={index}
-                    style={index < letterIndex ? {fontWeight: "bold"} : null}
-                  >
-                    {letter}
-                  </span>
-                )
-              })
-            )
-          }</p>
-        )
-      })}
+      <CurrentWords wordList={wordList} letterIndex={letterIndex} />
     </section>
   )
 }

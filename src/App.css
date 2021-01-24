@@ -18,3 +18,18 @@ aside {
   top: 0px;
   left: 50px;
 }
+
+.current-words {
+  position: relative;
+  top: -700px;
+  animation: scroll 35s linear;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(0px)
+  }
+  100% {
+    transform: translateY(1400px);
+  }
+}

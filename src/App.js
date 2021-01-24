@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './App.css';
 import StartScreen from './components/StartScreen';
 import TypingGame from './components/TypingGame';
@@ -9,8 +9,8 @@ function App() {
   return (
     <div className="App">
       { !gameStarted 
-        ? <StartScreen handleClick={() => setGameStarted(true)} />
-        : <TypingGame />}
+          ? <StartScreen handleClick={() => setGameStarted(true)} />
+          : <TypingGame />}
     </div>
   );
 }
