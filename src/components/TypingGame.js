@@ -11,7 +11,7 @@ export default function TypingGame() {
     if (event.key === currentLetter) {
       if (currentWord.length === letterIndex + 1) {
         if (wordList.length === 1) {
-          setWordList(["You Did It!!!"]);
+          // setWordList(["You Did It!!!"]);
         } else {
           let tempWordList = wordList.slice();
           tempWordList.pop();
