@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { words } from '../words';
+import { randomWords, shuffleWords } from '../shuffleWords';
 
 export default function TypingGame() {
   const [letterIndex, setLetterIndex] = useState(0);
@@ -24,11 +25,11 @@ export default function TypingGame() {
   }, [letterIndex, wordList])
   
   useEffect(() => {
-    let tempWordArr = [];
-    for (let i = 0; i < 10; i++) {  
-      tempWordArr.unshift(words[i]);
-    }
-    setWordList(tempWordArr);
+    // let tempWordArr = [];
+    // for (let i = 0; i < 10; i++) {  
+    //   tempWordArr.unshift(words[i]);
+    // }
+    setWordList(shuffleWords(10, words));
   }, [])
   
   useEffect(() => {
