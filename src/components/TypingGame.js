@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { words } from '../words';
 
 export default function TypingGame() {
   const [wordIndex, setWordIndex] = useState(0);
   const [letterIndex, setLetterIndex] = useState(0);
   
-  const handleKeyUp = typedLetter => {
+  const handleKeyUp = useCallback(event => {
     let currentWord = words[wordIndex];
     let currentLetter = currentWord.charAt(letterIndex);
-    if (typedLetter === currentLetter) {
-      console.log(currentWord.length)
+    if (event.key === currentLetter) {
+      setLetterIndex(letterIndex + 1);
     }
-  }
-
+    console.log(event.key, words[wordIndex].charAt(letterIndex));
+  }, [letterIndex, wordIndex])
+  
   useEffect(() => {
-    window.addEventListener('keyup', event => handleKeyUp(event.key));
-  })
+    window.addEventListener('keyup', handleKeyUp);
+    return () => window.removeEventListener('keyup', handleKeyUp)
+  }, [handleKeyUp])
   
   return (
     <section>
