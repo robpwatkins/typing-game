@@ -13,19 +13,33 @@ export default function TypingGame() {
     let currentWord = wordList[wordList.length - 1];
     let currentLetter = currentWord.charAt(letterIndex);
     if (event.key === currentLetter) {
-      if (currentWord.length === letterIndex + 1) {
-        if (wordList.length === 1) {
-          setWordList(createShuffledArr(10, words));
+      let tempLetterIndex = letterIndex + 1;
+      setLetterIndex(letterIndex + 1);
+      if (currentWord.length === tempLetterIndex) {
+        let tempWordList = wordList.slice();
+        tempWordList.pop();
+        setWordList(tempWordList);
+        console.log(tempWordList.length, wordList.length);
+        setLetterIndex(0);
+        if (tempWordList.length === 0) {
+          setWordList(createShuffledArr(10, words))
           setLetterIndex(0);
           setLevel(level + 1);
-        } else {
-          let tempWordList = wordList.slice();
-          tempWordList.pop();
-          setWordList(tempWordList);
-          setLetterIndex(0);
         }
-      } else
-      setLetterIndex(letterIndex + 1);
+      }
+      // if (currentWord.length === letterIndex + 1) {
+      //   if (wordList.length === 1) {
+      //     setWordList(createShuffledArr(10, words));
+      //     setLetterIndex(0);
+      //     setLevel(level + 1);
+      //   } else {
+      //     let tempWordList = wordList.slice();
+      //     tempWordList.pop();
+      //     setWordList(tempWordList);
+      //     setLetterIndex(0);
+      //   }
+      // } else
+      // setLetterIndex(letterIndex + 1);
     }
   }, [letterIndex, wordList, level])
   
@@ -41,7 +55,7 @@ export default function TypingGame() {
   return (
     <section className="typing-game ">
       <Level level={level} />
-      <CurrentWords wordList={wordList} letterIndex={letterIndex} />
+      <CurrentWords wordList={wordList} letterIndex={letterIndex} level={level} />
     </section>
   )
 }

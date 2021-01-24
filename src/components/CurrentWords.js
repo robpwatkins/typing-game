@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 // const scroll = keyframes`
@@ -17,10 +17,30 @@ import styled, { keyframes } from 'styled-components';
 //   animation: ${scroll} 35s linear;  
 // `;
 
-export default function CurrentWords({ wordList, letterIndex }) {
+
+export default function CurrentWords({ wordList, letterIndex, level }) {
+  const prevLevelRef = useRef();
+
+  useEffect(() => {
+    prevLevelRef.current = level;
+  })
+
+  const prevLevel = prevLevelRef.current;
+
+  const isScrolling = () => {
+    if (prevLevel !== level) return false;
+    else return true;
+    // wordList.length && console.log(wordList.length, wordList[0].length);
+    // if ((wordList.length === 1 && letterIndex === wordList[0].length - 1)) {
+    //   return false;
+    // } else return true;
+  }
 
   return (
-    <section className={!(wordList.length === 1 && letterIndex === wordList[0].length - 1) ? "current-words scrolling" : "current-words"}>
+    <section 
+      className={isScrolling() 
+        ? "current-words scrolling" 
+        : "current-words"}>
       {wordList.map((word, index) => {
         return (
           <p key={index}>{
