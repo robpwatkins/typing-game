@@ -1,63 +1,61 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { words } from '../words';
 
 export default function TypingGame() {
-  const [shortList, setShortList] = useState([]);
-  const [currentWord, setCurrentWord] = useState([]);
-  const [currentTypedLetter, setCurrentTypedLetter] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [letterIndex, setLetterIndex] = useState(0);
+  const [wordList, setWordList] = useState([]);
+  
+  const handleKeyUp = useCallback(event => {
+    let currentWord = wordList[wordList.length - 1];
+    let currentLetter = currentWord.charAt(letterIndex);
+    if (event.key === currentLetter) {
+      if (currentWord.length === letterIndex + 1) {
+        if (wordList.length === 1) {
+          setWordList(["You Did It!!!"]);
+        } else {
+          let tempWordList = wordList.slice();
+          tempWordList.pop();
+          setWordList(tempWordList);
+          setLetterIndex(0);
+        }
+      } else
+      setLetterIndex(letterIndex + 1);
+    }
+  }, [letterIndex, wordList])
   
   useEffect(() => {
-    let tempList = [];
-    for (let i = 0; i <=10; i++) {
-      tempList.unshift(words[i]);
+    let tempWordArr = [];
+    for (let i = 0; i < 10; i++) {  
+      tempWordArr.unshift(words[i]);
     }
-    setShortList(tempList);
-    setCurrentWord(tempList[tempList.length - 1].split(''))
-    window.addEventListener('keyup', event => {
-      setCurrentTypedLetter(event.key);
-    })
+    setWordList(tempWordArr);
   }, [])
-
+  
   useEffect(() => {
-    if (currentTypedLetter === currentWord[currentIndex]) {
-      // console.log(currentWord[currentIndex]);
-      if (currentIndex === currentWord.length - 1) {
-        if (shortList.length === 1) {
-          setCurrentWord(['You Did It!!!']);
-        }
-        else {
-          let shortListCopy = shortList.slice();
-          shortListCopy.pop();
-          setShortList(shortListCopy);
-          setCurrentWord(shortListCopy[shortListCopy.length - 1].split(''));
-          setCurrentIndex(0);
-        }
-      } else 
-      setCurrentIndex(currentIndex + 1);
-    }
-  }, [currentTypedLetter, currentWord, currentIndex, shortList])
+    window.addEventListener('keyup', handleKeyUp);
+    return () => window.removeEventListener('keyup', handleKeyUp)
+  }, [handleKeyUp])
   
   return (
     <section>
-      {shortList.map((word, index) => {
+      {wordList.map((word, index) => {
         return (
           <p key={index}>{
-            index < shortList.length - 1 
-              ? word
-              : currentWord.map((letter, index) => {
+            index < wordList.length - 1
+            ? word
+            : (
+              wordList[wordList.length - 1].split('').map((letter, index) => {
                 return (
-                  <span 
+                  <span
                     key={index}
-                    style={currentIndex >= index + 1 
-                      ? {fontWeight: "bold"} 
-                      : null}
+                    style={index < letterIndex ? {fontWeight: "bold"} : null}
                   >
                     {letter}
                   </span>
                 )
               })
-            }</p>
+            )
+          }</p>
         )
       })}
     </section>
