@@ -1,3 +1,9 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   position: relative;
   width: 100%;
@@ -20,9 +26,18 @@ aside {
 }
 
 .current-words {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
   position: relative;
-  top: -700px;
+  top: -690px;
+  justify-content: flex-start;
   animation: scroll 35s linear;
+}
+
+.current-words > p {
+  margin: 15px 0;
 }
 
 @keyframes scroll {
