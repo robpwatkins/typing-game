@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { words } from '../words';
-import { randomWords, shuffleWords } from '../shuffleWords';
+import { createShuffledArr } from '../createShuffledArr';
+import Level from './Level';
 
 export default function TypingGame() {
   const [letterIndex, setLetterIndex] = useState(0);
   const [wordList, setWordList] = useState([]);
+  const [level, setLevel] = useState(1);
   
   const handleKeyUp = useCallback(event => {
     let currentWord = wordList[wordList.length - 1];
@@ -12,7 +14,9 @@ export default function TypingGame() {
     if (event.key === currentLetter) {
       if (currentWord.length === letterIndex + 1) {
         if (wordList.length === 1) {
-          setWordList(["You Did It!!!"]);
+          setWordList(createShuffledArr(10, words));
+          setLetterIndex(0);
+          setLevel(level + 1);
         } else {
           let tempWordList = wordList.slice();
           tempWordList.pop();
@@ -25,11 +29,7 @@ export default function TypingGame() {
   }, [letterIndex, wordList])
   
   useEffect(() => {
-    // let tempWordArr = [];
-    // for (let i = 0; i < 10; i++) {  
-    //   tempWordArr.unshift(words[i]);
-    // }
-    setWordList(shuffleWords(10, words));
+    setWordList(createShuffledArr(10, words));
   }, [])
   
   useEffect(() => {
@@ -38,7 +38,8 @@ export default function TypingGame() {
   }, [handleKeyUp])
   
   return (
-    <section>
+    <section className="typing-game ">
+      <Level level={level} />
       {wordList.map((word, index) => {
         return (
           <p key={index}>{
