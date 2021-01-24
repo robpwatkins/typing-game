@@ -27,18 +27,18 @@ export default function CurrentWords({ wordList, letterIndex, level }) {
 
   const prevLevel = prevLevelRef.current;
 
-  const isScrolling = () => {
-    if (prevLevel !== level) return false;
-    else return true;
+  // const isScrolling = () => {
+  //   if (prevLevel !== level) return false;
+  //   else return true;
     // wordList.length && console.log(wordList.length, wordList[0].length);
     // if ((wordList.length === 1 && letterIndex === wordList[0].length - 1)) {
     //   return false;
     // } else return true;
-  }
+  // }
 
   return (
     <section 
-      className={isScrolling() 
+      className={prevLevel === level 
         ? "current-words scrolling" 
         : "current-words"}>
       {wordList.map((word, index) => {
