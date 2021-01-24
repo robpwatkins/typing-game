@@ -9,6 +9,10 @@ export default function TypingGame() {
     let currentWord = words[wordIndex];
     let currentLetter = currentWord.charAt(letterIndex);
     if (event.key === currentLetter) {
+      if (currentWord.length === letterIndex + 1) {
+        setWordIndex(wordIndex + 1);
+        setLetterIndex(0);
+      } else
       setLetterIndex(letterIndex + 1);
     }
     console.log(event.key, words[wordIndex].charAt(letterIndex));
@@ -18,13 +22,15 @@ export default function TypingGame() {
     window.addEventListener('keyup', handleKeyUp);
     return () => window.removeEventListener('keyup', handleKeyUp)
   }, [handleKeyUp])
-  
+
   return (
     <section>
       {words.map((word, index) => {
-        return (
-          <p key={index}>{word}</p>
-        )
+        if (index >= wordIndex) {
+          return (
+            <p key={index}>{word}</p>
+          )
+        }
       })}
     </section>
   )
