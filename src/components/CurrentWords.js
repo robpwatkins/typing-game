@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export default function CurrentWords({ wordList, letterIndex, level }) {
   const [isScrolling, setIsScrolling] = useState(false);
-  const [scrollSpeed, setScrollSpeed] = useState(40)
+  const [scrollSpeed/* , setScrollSpeed */] = useState(40);
+
+  const spanRef = useRef();
 
   useEffect(() => {
     if (level === 1) setIsScrolling(true);
@@ -14,9 +16,10 @@ export default function CurrentWords({ wordList, letterIndex, level }) {
   useEffect(() => {
     !isScrolling && setTimeout(() => {
       setIsScrolling(true);
-    }, 10)
+    }, 10);
   }, [isScrolling])
   
+  console.log(spanRef.current.getBoundingClientRect());
   return (
     <section 
     style={{animationDuration: `${scrollSpeed - level}s`}}
@@ -35,6 +38,7 @@ export default function CurrentWords({ wordList, letterIndex, level }) {
                   <span
                     key={index}
                     style={index < letterIndex ? {fontWeight: "bold"} : null}
+                    ref={spanRef}
                   >
                     {letter}
                   </span>
