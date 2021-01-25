@@ -11,15 +11,15 @@ export default function TypingGame() {
   
   const handleKeyUp = useCallback(event => {
     let currentWord = wordList[wordList.length - 1];
-    let currentLetter = currentWord.charAt(letterIndex);
-    if (event.key === currentLetter) {
+    // let currentLetter = currentWord.charAt(letterIndex);
+    if (event.key === currentWord.charAt(letterIndex)) {
       let tempLetterIndex = letterIndex + 1;
       setLetterIndex(letterIndex + 1);
       if (currentWord.length === tempLetterIndex) {
         let tempWordList = wordList.slice();
         tempWordList.pop();
         setWordList(tempWordList);
-        console.log(tempWordList.length, wordList.length);
+        // console.log(tempWordList.length, wordList.length);
         setLetterIndex(0);
         if (tempWordList.length === 0) {
           setWordList(createShuffledArr(10, words))

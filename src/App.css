@@ -19,6 +19,10 @@
   color: #282c34;
 }
 
+.start-screen > button {
+  padding: 1px;
+}
+
 aside {
   position: absolute;
   top: 40px;
@@ -34,7 +38,7 @@ aside {
 }
 
 .scrolling {
-  animation: scroll 45s linear;
+  animation: scroll linear;
 }
 
 .current-words > p {
@@ -43,7 +47,7 @@ aside {
 
 @keyframes scroll {
   0% {
-    transform: translateY(-690px)
+    transform: translateY(-650px)
   }
   100% {
     transform: translateY(1400px);
