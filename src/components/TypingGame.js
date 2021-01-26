@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { words } from '../words';
 import { createShuffledArr } from '../createShuffledArr';
+import useKeyPress from './hooks/useKeyPress';
 import Level from './Level';
 import CurrentWords from './CurrentWords';
 
@@ -9,6 +10,10 @@ export default function TypingGame() {
   const [wordList, setWordList] = useState([]);
   const [level, setLevel] = useState(1);
   
+  useKeyPress(key => {
+    console.log(key);
+  })
+
   const handleKeyUp = useCallback(event => {
     let currentWord = wordList[wordList.length - 1];
     // let currentLetter = currentWord.charAt(letterIndex);
@@ -47,10 +52,10 @@ export default function TypingGame() {
     setWordList(createShuffledArr(10, words));
   }, [])
   
-  useEffect(() => {
-    window.addEventListener('keyup', handleKeyUp);
-    return () => window.removeEventListener('keyup', handleKeyUp)
-  }, [handleKeyUp])
+  // useEffect(() => {
+  //   window.addEventListener('keyup', handleKeyUp);
+  //   return () => window.removeEventListener('keyup', handleKeyUp)
+  // }, [handleKeyUp])
   
   return (
     <section className="typing-game ">

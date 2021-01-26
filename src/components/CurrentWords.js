@@ -19,7 +19,6 @@ export default function CurrentWords({ wordList, letterIndex, level }) {
     }, 10);
   }, [isScrolling])
   
-  console.log(spanRef.current.getBoundingClientRect());
   return (
     <section 
     style={{animationDuration: `${scrollSpeed - level}s`}}
