@@ -7,7 +7,7 @@ import CurrentWords from './CurrentWords';
 
 export default function TypingGame() {
   const [letterIndex, setLetterIndex] = useState(0);
-  const [wordList, setWordList] = useState([]);
+  // const [wordList, setWordList] = useState([]);
   const [level, setLevel] = useState(1);
   
   useKeyPress(key => {
