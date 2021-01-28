@@ -41,6 +41,10 @@ aside {
   animation: scroll linear;
 }
 
+.hidden {
+  display: none;
+}
+
 .current-words > p {
   margin: 15px 0;
 }
