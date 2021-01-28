@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
-export default function CurrentWords({ wordList, wordIndex, letterIndex, level }) {
+export default function CurrentWords({ wordList, letterIndex, level }) {
   const [isScrolling, setIsScrolling] = useState(false);
   const [scrollSpeed/* , setScrollSpeed */] = useState(40);
-
-  const spanRef = useRef();
 
   useEffect(() => {
     if (level === 1) setIsScrolling(true);
@@ -37,7 +35,6 @@ export default function CurrentWords({ wordList, wordIndex, letterIndex, level }
                   <span
                     key={index}
                     style={index < letterIndex ? {fontWeight: "bold"} : null}
-                    ref={spanRef}
                   >
                     {letter}
                   </span>
