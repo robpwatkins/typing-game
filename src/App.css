@@ -38,7 +38,7 @@ aside {
 }
 
 .scrolling {
-  /* animation: scroll linear; */
+  animation: scroll linear;
 }
 
 .current-words > p {

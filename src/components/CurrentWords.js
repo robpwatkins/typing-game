@@ -14,7 +14,7 @@ export default function CurrentWords({ wordList, letterIndex, level }) {
   useEffect(() => {
     !isScrolling && setTimeout(() => {
       setIsScrolling(true);
-    }, 10);
+    }, 100);
   }, [isScrolling])
   
   return (
