@@ -8,14 +8,17 @@ export default function CurrentWords({ wordList, letterIndex, level }) {
     if (level === 1) setIsScrolling(true);
     else if (wordList.length === 10 && letterIndex === 0) {
       setIsScrolling(false);
+      setTimeout(() => {
+        setIsScrolling(true);
+      }, 100);
     }
   }, [level, wordList.length, letterIndex])
   
-  useEffect(() => {
-    !isScrolling && setTimeout(() => {
-      setIsScrolling(true);
-    }, 100);
-  }, [isScrolling])
+  // useEffect(() => {
+  //   !isScrolling && setTimeout(() => {
+  //     setIsScrolling(true);
+  //   }, 100);
+  // }, [isScrolling])
   
   return (
     <section 
