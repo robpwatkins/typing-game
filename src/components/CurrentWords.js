@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-export default function CurrentWords({ wordList, letterIndex, level }) {
+export default function CurrentWords({ wordList, wordIndex, letterIndex, level }) {
   const [isScrolling, setIsScrolling] = useState(false);
   const [scrollSpeed/* , setScrollSpeed */] = useState(40);
 
