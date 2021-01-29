@@ -16,17 +16,25 @@
   align-items: center;
   justify-content: center;
   font-size: calc(15px + 2vmin);
+  font-family: 'Courier New', Courier, monospace;
   color: #282c34;
 }
 
 .start-screen > button {
   padding: 1px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 aside {
   position: absolute;
   top: 40px;
   left: 50px;
+}
+
+.fx {
+  position: absolute;
+  top: 105px;
+  left: 40px;
 }
 
 .current-words {

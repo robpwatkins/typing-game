@@ -1,33 +1,24 @@
 import React, { useState, useEffect } from 'react';
 
 export default function CurrentWords({ wordList, letterIndex, level }) {
-  const [isScrolling, setIsScrolling] = useState(false);
+  const [levelReset, setLevelReset] = useState(true);
   const [scrollSpeed/* , setScrollSpeed */] = useState(40);
 
   useEffect(() => {
-    if (level === 1) setIsScrolling(true);
-    else if (wordList.length === 10 && letterIndex === 0) {
-      setIsScrolling(false);
-      setTimeout(() => {
-        setIsScrolling(true);
-      }, 100);
-    }
-  }, [level, wordList.length, letterIndex])
-  
-  // useEffect(() => {
-  //   !isScrolling && setTimeout(() => {
-  //     setIsScrolling(true);
-  //   }, 100);
-  // }, [isScrolling])
+    setLevelReset(true);
+    setTimeout(() => {
+      setLevelReset(false);
+    }, 100);
+  }, [level])
   
   return (
     <section 
     style={{animationDuration: `${scrollSpeed - level}s`}}
-    className={isScrolling 
+    className={!levelReset 
       ? "current-words scrolling" 
       : "current-words"}
     >
-      {isScrolling && wordList.map((word, index) => {
+      {!levelReset && wordList.map((word, index) => {
         return (
           <p key={index}>{
             index < wordList.length - 1

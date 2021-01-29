@@ -4,7 +4,7 @@ import StartScreen from './components/StartScreen';
 import TypingGame from './components/TypingGame';
 
 function App() {
-  const [gameStarted, setGameStarted] = useState(true);
+  const [gameStarted, setGameStarted] = useState(false);
 
   return (
     <div className="App">
