@@ -35,6 +35,10 @@
   font-family: 'Courier New', Courier, monospace;
 }
 
+.clicked {
+  font-weight: bold;
+}
+
 aside {
   position: absolute;
   top: 40px;

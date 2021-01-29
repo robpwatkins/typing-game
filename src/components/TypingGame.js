@@ -38,8 +38,10 @@ export default function TypingGame() {
         setLetterIndex(0);
       } else
       setLetterIndex(tempLetterIndex);
+    } else {
+      fxEnabled && playIncorrectKeyStroke();
+      setLetterIndex(0);
     }
-    else fxEnabled && playIncorrectKeyStroke();
   })
 
   return (

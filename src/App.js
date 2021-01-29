@@ -5,11 +5,15 @@ import TypingGame from './components/TypingGame';
 
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
+  const [difficulty, setDifficulty] = useState(null);
 
   return (
     <div className="App">
       { !gameStarted 
-          ? <StartScreen handleClick={() => setGameStarted(true)} />
+          ? <StartScreen
+            setGameStarted={setGameStarted}
+            setDifficulty={setDifficulty}
+          />
           : <TypingGame />}
     </div>
   );
