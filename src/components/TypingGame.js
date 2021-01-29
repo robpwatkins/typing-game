@@ -5,7 +5,8 @@ import { createShuffledArr } from '../createShuffledArr';
 import useKeyPress from '../hooks/useKeyPress';
 import Level from './Level';
 import CurrentWords from './CurrentWords';
-import keyStroke from '../sounds/keyStroke.wav';
+import correctKeyStroke from '../sounds/correctKeyStroke2.wav';
+import incorrectKeyStroke from '../sounds/incorrectKeyStroke.wav';
 import FX from './FX';
 
 export default function TypingGame() {
@@ -13,17 +14,18 @@ export default function TypingGame() {
   const [letterIndex, setLetterIndex] = useState(0);
   const [level, setLevel] = useState(1);
   const [fxEnabled, setFxEnabled] = useState(false);
-  const [play] = useSound(keyStroke);
+  const [playCorrectKeyStroke] = useSound(correctKeyStroke);
+  const [playIncorrectKeyStroke] = useSound(incorrectKeyStroke);
   
   useEffect(() => {
     setWordList(createShuffledArr(words, 10));
   }, [])
 
   useKeyPress(key => {
-    fxEnabled && play();
     let currentWord = wordList[wordList.length - 1];
     let currentLetter = currentWord.charAt(letterIndex);
     if (key === currentLetter) {
+      fxEnabled && playCorrectKeyStroke();
       let tempLetterIndex = letterIndex + 1;
       if (currentWord.length === tempLetterIndex) {
         let tempWordList = wordList.slice();
@@ -37,6 +39,7 @@ export default function TypingGame() {
       } else
       setLetterIndex(tempLetterIndex);
     }
+    else fxEnabled && playIncorrectKeyStroke();
   })
 
   return (

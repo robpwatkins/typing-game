@@ -20,6 +20,16 @@
   color: #282c34;
 }
 
+.start-screen > span {
+  cursor: default;
+  font-size: 18px;
+}
+
+.start-screen > span:nth-child(even):hover {
+  cursor: default;
+  font-weight: bold;
+}
+
 .start-screen > button {
   padding: 1px;
   font-family: 'Courier New', Courier, monospace;
