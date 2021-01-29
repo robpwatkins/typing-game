@@ -13,7 +13,7 @@ export default function CurrentWords({ wordList, letterIndex, level }) {
   
   return (
     <section 
-    style={{animationDuration: `${scrollSpeed - level}s`}}
+    style={{animationDuration: `${scrollSpeed - level * 2}s`}}
     className={!levelReset 
       ? "current-words scrolling" 
       : "current-words"}
