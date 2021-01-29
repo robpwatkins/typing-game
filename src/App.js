@@ -12,6 +12,7 @@ function App() {
       { !gameStarted 
           ? <StartScreen
             setGameStarted={setGameStarted}
+            difficulty={difficulty}
             setDifficulty={setDifficulty}
           />
           : <TypingGame />}

@@ -35,7 +35,7 @@
   font-family: 'Courier New', Courier, monospace;
 }
 
-.clicked {
+.active {
   font-weight: bold;
 }
 
