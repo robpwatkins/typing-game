@@ -1,4 +1,13 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .App {
+  position: relative;
+  width: 100%;
+  height: 100%;
   text-align: center;
   background-color: ghostwhite;
   min-height: 100vh;
@@ -7,32 +16,52 @@
   align-items: center;
   justify-content: center;
   font-size: calc(15px + 2vmin);
+  font-family: 'Courier New', Courier, monospace;
   color: #282c34;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.start-screen > button {
+  padding: 1px;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+aside {
+  position: absolute;
+  top: 40px;
+  left: 50px;
+}
+
+.fx {
+  position: absolute;
+  top: 105px;
+  left: 40px;
+}
+
+.current-words {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  justify-content: flex-start;
+}
+
+.scrolling {
+  animation: scroll linear;
+}
+
+.hidden {
+  display: none;
+}
+
+.current-words > p {
+  margin: 15px 0;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(-650px)
   }
-}
-
-.App-header {
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+  100% {
+    transform: translateY(1400px);
   }
 }

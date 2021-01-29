@@ -1,63 +1,49 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
+import useSound from 'use-sound';
 import { words } from '../words';
+import { createShuffledArr } from '../createShuffledArr';
+import useKeyPress from '../hooks/useKeyPress';
+import Level from './Level';
+import CurrentWords from './CurrentWords';
+import keyStroke from '../sounds/keyStroke.wav';
+import FX from './FX';
 
 export default function TypingGame() {
-  const [letterIndex, setLetterIndex] = useState(0);
   const [wordList, setWordList] = useState([]);
+  const [letterIndex, setLetterIndex] = useState(0);
+  const [level, setLevel] = useState(1);
+  const [fxEnabled, setFxEnabled] = useState(false);
+  const [play] = useSound(keyStroke);
   
-  const handleKeyUp = useCallback(event => {
+  useEffect(() => {
+    setWordList(createShuffledArr(words, 10));
+  }, [])
+
+  useKeyPress(key => {
+    fxEnabled && play();
     let currentWord = wordList[wordList.length - 1];
     let currentLetter = currentWord.charAt(letterIndex);
-    if (event.key === currentLetter) {
-      if (currentWord.length === letterIndex + 1) {
-        if (wordList.length === 1) {
-          setWordList(["You Did It!!!"]);
-        } else {
-          let tempWordList = wordList.slice();
-          tempWordList.pop();
-          setWordList(tempWordList);
-          setLetterIndex(0);
-        }
+    if (key === currentLetter) {
+      let tempLetterIndex = letterIndex + 1;
+      if (currentWord.length === tempLetterIndex) {
+        let tempWordList = wordList.slice();
+        tempWordList.pop();
+        if (tempWordList.length === 0) {
+          setLevel(level + 1);
+          setWordList(createShuffledArr(words, 10));
+        } else
+        setWordList(tempWordList);
+        setLetterIndex(0);
       } else
-      setLetterIndex(letterIndex + 1);
+      setLetterIndex(tempLetterIndex);
     }
-  }, [letterIndex, wordList])
-  
-  useEffect(() => {
-    let tempWordArr = [];
-    for (let i = 0; i < 10; i++) {  
-      tempWordArr.unshift(words[i]);
-    }
-    setWordList(tempWordArr);
-  }, [])
-  
-  useEffect(() => {
-    window.addEventListener('keyup', handleKeyUp);
-    return () => window.removeEventListener('keyup', handleKeyUp)
-  }, [handleKeyUp])
-  
+  })
+
   return (
-    <section>
-      {wordList.map((word, index) => {
-        return (
-          <p key={index}>{
-            index < wordList.length - 1
-            ? word
-            : (
-              wordList[wordList.length - 1].split('').map((letter, index) => {
-                return (
-                  <span
-                    key={index}
-                    style={index < letterIndex ? {fontWeight: "bold"} : null}
-                  >
-                    {letter}
-                  </span>
-                )
-              })
-            )
-          }</p>
-        )
-      })}
+    <section className="typing-game ">
+      <FX handleClick={() => setFxEnabled(!fxEnabled)} fxEnabled={fxEnabled} />
+      <Level level={level} />
+      <CurrentWords wordList={wordList} letterIndex={letterIndex} level={level} />
     </section>
   )
 }
