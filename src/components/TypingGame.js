@@ -9,7 +9,7 @@ import correctKeyStroke from '../sounds/correctKeyStroke2.wav';
 import incorrectKeyStroke from '../sounds/incorrectKeyStroke.wav';
 import FX from './FX';
 
-export default function TypingGame({ words }) {
+export default function TypingGame({ words, difficulty }) {
   const [wordList, setWordList] = useState([]);
   const [letterIndex, setLetterIndex] = useState(0);
   const [level, setLevel] = useState(0);
@@ -18,7 +18,7 @@ export default function TypingGame({ words }) {
   const [playIncorrectKeyStroke] = useSound(incorrectKeyStroke);
 
   useEffect(() => {
-    console.log(words);
+    console.log(difficulty);
     setWordList(createShuffledArr(words, 10));
     setLevel(1);
   }, [words])
@@ -42,7 +42,7 @@ export default function TypingGame({ words }) {
       setLetterIndex(tempLetterIndex);
     } else {
       fxEnabled && playIncorrectKeyStroke();
-      setLetterIndex(0);
+      (difficulty === 'medium' || difficulty === 'difficult') && setLetterIndex(0);  
     }
   })
 

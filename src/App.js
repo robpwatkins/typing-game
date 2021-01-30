@@ -37,7 +37,7 @@ function App() {
             setDifficulty={setDifficulty}
             words={words}
           />
-          : <TypingGame words={words} />}
+          : <TypingGame words={words} difficulty={difficulty} />}
     </div>
   );
 }
