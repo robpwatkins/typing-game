@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import useSound from 'use-sound';
 // import { words } from '../words';
 import { createShuffledArr } from '../createShuffledArr';
@@ -9,35 +9,18 @@ import correctKeyStroke from '../sounds/correctKeyStroke2.wav';
 import incorrectKeyStroke from '../sounds/incorrectKeyStroke.wav';
 import FX from './FX';
 
-export default function TypingGame() {
-  const [words, setWords] = useState([]);
+export default function TypingGame({ words }) {
   const [wordList, setWordList] = useState([]);
   const [letterIndex, setLetterIndex] = useState(0);
-  const [level, setLevel] = useState(1);
+  const [level, setLevel] = useState(0);
   const [fxEnabled, setFxEnabled] = useState(false);
   const [playCorrectKeyStroke] = useSound(correctKeyStroke);
   const [playIncorrectKeyStroke] = useSound(incorrectKeyStroke);
-  
+
   useEffect(() => {
-    let tempWords = buildWordsArr();
     setWordList(createShuffledArr(words, 10));
-
-  }, [])
-
-  const fetchWords = () => {
-    return fetch(`https://api.wordnik.com/v4/words.json/randomWords?minCorpusCount=25000&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=4&maxLength=9&limit=250&api_key=${process.env.REACT_APP_WORDNIK_API_KEY}`)
-      .then(res => res.json())
-      .then(response => response.map(wordObj => wordObj.word));
-  }
-
-  const buildWordsArr = async () => {
-    let tempWords = [];
-    let fetchedWords = await fetchWords().then(response => response);
-    while (tempWords.length < 250) {
-      tempWords = [...tempWords, ...fetchedWords];
-    }
-    setWords(tempWords); 
-  }
+    setLevel(1);
+  }, [words])
 
   useKeyPress(key => {
     let currentWord = wordList[wordList.length - 1];
@@ -62,7 +45,6 @@ export default function TypingGame() {
     }
   })
 
-  console.log(words);
   return (
     <section className="typing-game ">
       <FX handleClick={() => setFxEnabled(!fxEnabled)} fxEnabled={fxEnabled} />

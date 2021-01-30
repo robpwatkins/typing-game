@@ -64,7 +64,7 @@ aside {
 }
 
 .hidden {
-  display: none;
+  /* display: none; */
 }
 
 .current-words > p {

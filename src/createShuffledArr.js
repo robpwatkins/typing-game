@@ -1,7 +1,7 @@
 export const createShuffledArr = (arr, count) => {
-  let randomArr = [];
+  let tempArr = [];
   for (let i = 0; i < count; i++) {
-    randomArr.push(arr.splice(Math.floor(Math.random() * arr.length), 1)[0]);
+    tempArr.push(arr.splice(i, 1)[0]);
   }
-  return randomArr;
+  return tempArr;
 }

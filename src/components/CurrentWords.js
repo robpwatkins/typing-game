@@ -6,19 +6,26 @@ export default function CurrentWords({ wordList, letterIndex, level }) {
 
   useEffect(() => {
     setLevelReset(true);
-    setTimeout(() => {
-      setLevelReset(false);
-    }, 100);
+    if (wordList.length) {
+      if (level === 1 && wordList.length === 10) {
+        setTimeout(() => {
+          setLevelReset(false);
+        }, 2000);
+      } else setTimeout(() => {
+        setLevelReset(false);
+      }, 100)
+    }
   }, [level])
   
+  console.log(wordList.length);
   return (
     <section 
     style={{animationDuration: `${scrollSpeed - level * 2}s`}}
     className={!levelReset 
       ? "current-words scrolling" 
-      : "current-words"}
+      : "current-words hidden"}
     >
-      {!levelReset && wordList.map((word, index) => {
+      {wordList.length && (!levelReset && wordList.map((word, index) => {
         return (
           <p key={index}>{
             index < wordList.length - 1
@@ -37,7 +44,7 @@ export default function CurrentWords({ wordList, letterIndex, level }) {
             )
           }</p>
         )
-      })}
+      }))}
     </section>
   )
 }
