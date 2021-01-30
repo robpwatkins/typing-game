@@ -21,7 +21,14 @@ export default function TypingGame() {
     setWordList(createShuffledArr(words, 10));
   }, [])
 
+  const fetchWords = () => {
+    fetch(`https://api.wordnik.com/v4/words.json/randomWords?minCorpusCount=25000&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=4&maxLength=9&limit=250&api_key=${process.env.REACT_APP_WORDNIK_API_KEY}`)
+      .then(res => res.json())
+      .then(response => console.log(response));
+  }
+
   useKeyPress(key => {
+    fetchWords();
     let currentWord = wordList[wordList.length - 1];
     let currentLetter = currentWord.charAt(letterIndex);
     if (key === currentLetter) {
