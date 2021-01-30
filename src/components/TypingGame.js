@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import useSound from 'use-sound';
 // import { words } from '../words';
 import { createShuffledArr } from '../createShuffledArr';
@@ -18,6 +18,7 @@ export default function TypingGame({ words }) {
   const [playIncorrectKeyStroke] = useSound(incorrectKeyStroke);
 
   useEffect(() => {
+    console.log(words);
     setWordList(createShuffledArr(words, 10));
     setLevel(1);
   }, [words])

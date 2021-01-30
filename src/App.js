@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import StartScreen from './components/StartScreen';
 import TypingGame from './components/TypingGame';
@@ -14,7 +14,7 @@ function App() {
       .then(response => response.map(wordObj => wordObj.word));
   }
 
-  const buildWordsArr = async () => {
+  const buildWordsArr = useCallback(async () => {
     let tempWords = [];
     let fetchedWords = await fetchWords().then(response => response);
     while (tempWords.length < 250) {
@@ -22,11 +22,11 @@ function App() {
     }
     console.log(tempWords);
     setWords(tempWords);
-  }
+  }, [])
 
   useEffect(() => {
     buildWordsArr();
-  }, [])
+  }, [buildWordsArr])
 
   return (
     <div className="App">
@@ -35,6 +35,7 @@ function App() {
             setGameStarted={setGameStarted}
             difficulty={difficulty}
             setDifficulty={setDifficulty}
+            words={words}
           />
           : <TypingGame words={words} />}
     </div>

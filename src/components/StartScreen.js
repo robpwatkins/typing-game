@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function StartScreen({ difficulty, setDifficulty, setGameStarted }) {
+export default function StartScreen({ difficulty, setDifficulty, setGameStarted, words }) {
 
   const handleClick = event => {
     setDifficulty(event.target.innerText);
