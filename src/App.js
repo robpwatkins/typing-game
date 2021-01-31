@@ -29,7 +29,7 @@ function App() {
   // }, [buildWordsArr])
 
   return (
-    <div className="App">
+    <div className={gameStarted ? "App game-started" : "App"}>
       { !gameStarted 
           ? <StartScreen
             setGameStarted={setGameStarted}

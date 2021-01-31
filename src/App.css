@@ -20,6 +20,10 @@
   color: #282c34;
 }
 
+.game-started {
+  z-index: -1;
+}
+
 .start-screen {
   position: relative;
 }
@@ -54,54 +58,80 @@
 
 .typing-game {
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  position: relative;
+  display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
-  justify-content: flex-end;
+  justify-content: center;
+  /* align-items: center; */
   overflow: hidden;
+}
+
+.visible {
+  background: grey;
+  opacity: .5;
 }
 
 aside {
   position: absolute;
   top: 40px;
   left: 50px;
+  z-index: -1;
 }
 
 .fx {
   position: absolute;
   top: 105px;
   left: 40px;
+  z-index: -1;
 }
 
 .current-words {
-  /* position: relative; */
-  /* top: 0px; */
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: 0;
   justify-content: flex-start;
 }
 
+.current-words > p {
+  margin: 15px 0 0 0;
+}
+
 .scrolling {
+  position: relative;
   animation: scroll linear;
+  z-index: -1;
 }
 
 .floor {
   position: absolute;
+  bottom: 0;
   width: 100%;
   background: #282c34;
 }
 
-.current-words > p {
-  margin: 15px 0;
+.game-over {
+  position: absolute;
+  width: 50%;
+  height: 35%;
+  padding: 10px;
+  background: ghostwhite;
+  border-radius: 15px;
+  z-index: 3;
 }
 
 @keyframes scroll {
   0% {
-    transform: translateY(-650px)
+    transform: translateY(-850px)
   }
   100% {
-    transform: translateY(1400px);
+    transform: translateY(750px);
   }
 }
