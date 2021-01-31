@@ -15,13 +15,13 @@ function App() {
   }
 
   const buildWordsArr = useCallback(async () => {
-    let tempWords = [];
+    // let tempWords = [];
     let fetchedWords = await fetchWords().then(response => response);
-    while (tempWords.length < 250) {
-      tempWords = [...tempWords, ...fetchedWords];
-    }
-    console.log(tempWords);
-    setWords(tempWords);
+    setWords(fetchedWords);
+    // while (tempWords.length < 100) {
+    //   tempWords = [...tempWords, ...fetchedWords];
+    // }
+    // setWords(tempWords);
   }, [])
 
   useEffect(() => {

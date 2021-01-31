@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import PleaseSelect from './PleaseSelect';
 
 export default function StartScreen({ difficulty, setDifficulty, setGameStarted, words }) {
   const [alert, setAlert] = useState(false);
 
-  const handleClick = event => {
+  const handleSpanClick = event => {
     setDifficulty(event.target.innerText);
   }
 
@@ -15,16 +14,16 @@ export default function StartScreen({ difficulty, setDifficulty, setGameStarted,
   return (
     <section className="start-screen">
       <h3>Typing Game!</h3>
-      {alert && <p><em>Please select a difficulty:</em></p>}
-      <span className={difficulty === "easy" ? "active" : null} onClick={handleClick}>
+      {(alert && !difficulty) && <p><em>Please make a selection:</em></p>}
+      <span className={difficulty === "easy" ? "active" : null} onClick={handleSpanClick}>
         easy
       </span>
       <span> | </span>
-      <span className={difficulty === "medium" ? "active" : null} onClick={handleClick}>
+      <span className={difficulty === "medium" ? "active" : null} onClick={handleSpanClick}>
         medium
       </span>
       <span> | </span>
-      <span className={difficulty === "difficult" ? "active" : null} onClick={handleClick}>
+      <span className={difficulty === "difficult" ? "active" : null} onClick={handleSpanClick}>
         difficult
       </span>
       <br/>

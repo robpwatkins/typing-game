@@ -11,6 +11,7 @@ export default function CurrentWords({ wordList, letterIndex, level }) {
     }, 100);
   }, [level])
   
+  console.log(wordList)
   return (
     <section 
     style={{animationDuration: `${scrollSpeed - level * 2}s`}}
@@ -18,7 +19,7 @@ export default function CurrentWords({ wordList, letterIndex, level }) {
       ? "current-words scrolling" 
       : "current-words hidden"}
     >
-      {!levelReset && wordList.map((word, index) => {
+      {wordList.length && (!levelReset && wordList.map((word, index) => {
         return (
           <p key={index}>{
             index < wordList.length - 1
@@ -37,7 +38,7 @@ export default function CurrentWords({ wordList, letterIndex, level }) {
             )
           }</p>
         )
-      })}
+      }))}
     </section>
   )
 }
