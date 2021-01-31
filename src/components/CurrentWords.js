@@ -11,7 +11,6 @@ export default function CurrentWords({ wordList, letterIndex, level }) {
     }, 100);
   }, [level])
   
-  console.log(wordList.length);
   return (
     <section 
     style={{animationDuration: `${scrollSpeed - level * 2}s`}}

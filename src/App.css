@@ -20,12 +20,16 @@
   color: #282c34;
 }
 
+.start-screen {
+  position: relative;
+}
+
 .start-screen > span {
   cursor: default;
   font-size: 18px;
 }
 
-.start-screen > span:nth-child(even):hover {
+.start-screen > span:nth-last-child(odd):hover {
   cursor: default;
   font-weight: bold;
 }
@@ -37,6 +41,23 @@
 
 .active {
   font-weight: bold;
+}
+
+.start-screen > p {
+  position: absolute;
+  top: 37px;
+  width: 100%;
+  font-size: 15px;
+  /* font-weight: bold; */
+}
+
+.typing-game {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  justify-content: flex-end;
+  overflow: hidden;
 }
 
 aside {
@@ -52,10 +73,12 @@ aside {
 }
 
 .current-words {
+  /* position: relative; */
+  /* top: 0px; */
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   justify-content: flex-start;
 }
 
@@ -63,8 +86,10 @@ aside {
   animation: scroll linear;
 }
 
-.hidden {
-  /* display: none; */
+.floor {
+  position: absolute;
+  width: 100%;
+  background: #282c34;
 }
 
 .current-words > p {

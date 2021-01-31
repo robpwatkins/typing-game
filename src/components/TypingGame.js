@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import useSound from 'use-sound';
-// import { words } from '../words';
 import { createShuffledArr } from '../createShuffledArr';
 import useKeyPress from '../hooks/useKeyPress';
 import Level from './Level';
@@ -8,12 +7,14 @@ import CurrentWords from './CurrentWords';
 import correctKeyStroke from '../sounds/correctKeyStroke2.wav';
 import incorrectKeyStroke from '../sounds/incorrectKeyStroke.wav';
 import FX from './FX';
+import Floor from './Floor';
 
 export default function TypingGame({ words, difficulty }) {
   const [wordList, setWordList] = useState([]);
   const [letterIndex, setLetterIndex] = useState(0);
   const [level, setLevel] = useState(0);
   const [fxEnabled, setFxEnabled] = useState(false);
+  const [missedKeystrokes, setMissedKeystrokes] = useState(0);
   const [playCorrectKeyStroke] = useSound(correctKeyStroke);
   const [playIncorrectKeyStroke] = useSound(incorrectKeyStroke);
 
@@ -42,7 +43,8 @@ export default function TypingGame({ words, difficulty }) {
       setLetterIndex(tempLetterIndex);
     } else {
       fxEnabled && playIncorrectKeyStroke();
-      (difficulty === 'medium' || difficulty === 'difficult') && setLetterIndex(0);  
+      (difficulty === 'medium' || difficulty === 'difficult') && setLetterIndex(0);
+      setMissedKeystrokes(missedKeystrokes + 1);
     }
   })
 
@@ -51,6 +53,7 @@ export default function TypingGame({ words, difficulty }) {
       <FX handleClick={() => setFxEnabled(!fxEnabled)} fxEnabled={fxEnabled} />
       <Level level={level} />
       <CurrentWords wordList={wordList} letterIndex={letterIndex} level={level} />
+      {difficulty === 'difficult' && <Floor missedKeystrokes={missedKeystrokes} />}
     </section>
   )
 }
