@@ -24,9 +24,9 @@ function App() {
     // setWords(tempWords);
   }, [])
 
-  useEffect(() => {
-    buildWordsArr();
-  }, [buildWordsArr])
+  // useEffect(() => {
+  //   buildWordsArr();
+  // }, [buildWordsArr])
 
   return (
     <div className="App">

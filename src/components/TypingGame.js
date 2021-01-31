@@ -44,7 +44,7 @@ export default function TypingGame({ words, difficulty }) {
         tempWordList.pop();
         if (tempWordList.length === 0) {
           setLevel(level + 1);
-          setWordList(generateArr(words, 10));
+          setWordList(buildWordsArr());
           // if (words.length < 20) {
           //   buildWordsArr()
           // }
