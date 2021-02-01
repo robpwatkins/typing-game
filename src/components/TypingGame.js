@@ -6,17 +6,14 @@ import CurrentWords from './CurrentWords';
 import correctKeyStroke from '../sounds/correctKeyStroke2.wav';
 import incorrectKeyStroke from '../sounds/incorrectKeyStroke.wav';
 import FX from './FX';
-import Floor from './Floor';
 import GameOver from './GameOver';
 
-export default function TypingGame({ words, difficulty }) {
-  const [wordList, setWordList] = useState([]);
+export default function TypingGame({ difficulty }) {
+  const [words, setWords] = useState([]);
   const [letterIndex, setLetterIndex] = useState(0);
   const [level, setLevel] = useState(1);
   const [fxEnabled, setFxEnabled] = useState(false);
   const [missedKeystrokes, setMissedKeystrokes] = useState(0);
-  const [wordsHeight, setWordsHeight] = useState(null);
-  const [floorHeight, setFloorHeight] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [playCorrectKeyStroke] = useSound(correctKeyStroke);
   const [playIncorrectKeyStroke] = useSound(incorrectKeyStroke);
@@ -27,7 +24,7 @@ export default function TypingGame({ words, difficulty }) {
     let scrollHeight = sectionRef.current.scrollHeight;
     let clientHeight = sectionRef.current.clientHeight;
     return scrollHeight !== clientHeight && setGameOver(true);
-  }, 1000)
+  }, 1000);
 
   const fetchWords = () => {
     return fetch(`https://api.wordnik.com/v4/words.json/randomWords?minCorpusCount=10000&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=4&maxLength=9&limit=10&api_key=${process.env.REACT_APP_WORDNIK_API_KEY}`)
@@ -37,37 +34,34 @@ export default function TypingGame({ words, difficulty }) {
 
   const buildWordList = async () => {
     let fetchedWords = await fetchWords().then(response => response);
-    setWordList(fetchedWords);
+    setWords(fetchedWords);
   }
 
   useEffect(() => {
-    setWordList(buildWordList());
+    setWords(buildWordList());
   }, [])
 
   useKeyPress(key => {
-    console.log(wordsHeight, floorHeight);
-    let currentWord = wordList[wordList.length - 1];
+    let currentWord = words[words.length - 1];
     let currentLetter = currentWord.charAt(letterIndex);
     if (key === currentLetter) {
       fxEnabled && playCorrectKeyStroke();
       let tempLetterIndex = letterIndex + 1;
       if (currentWord.length === tempLetterIndex) {
-        let tempWordList = wordList.slice();
+        let tempWordList = words.slice();
         tempWordList.pop();
         if (tempWordList.length === 0) {
           setLevel(level + 1);
-          setWordList(buildWordList());
-          // if (words.length < 20) {
-          //   buildWordList()
-          // }
+          setWords(buildWordList());
         } else
-        setWordList(tempWordList);
+        setWords(tempWordList);
         setLetterIndex(0);
       } else
       setLetterIndex(tempLetterIndex);
     } else {
       fxEnabled && playIncorrectKeyStroke();
       (difficulty === 'medium' || difficulty === 'difficult') && setLetterIndex(0);
+      difficulty === 'difficult' && console.log('heyoo');
       setMissedKeystrokes(missedKeystrokes + 1);
     }
   })
@@ -77,9 +71,7 @@ export default function TypingGame({ words, difficulty }) {
       <div className={gameOver ? "overlay visible" : "overlay"} ref={sectionRef}>
         <FX handleClick={() => setFxEnabled(!fxEnabled)} fxEnabled={fxEnabled} />
         <Level level={level} />
-        <CurrentWords wordList={wordList} letterIndex={letterIndex} level={level} setWordsHeight={setWordsHeight} />
-        {difficulty === 'difficult' && 
-          <Floor missedKeystrokes={missedKeystrokes} setFloorHeight={setFloorHeight} />}
+        <CurrentWords words={words} letterIndex={letterIndex} level={level} difficulty={difficulty} />
       </div>
       {gameOver && <GameOver />}
     </section>

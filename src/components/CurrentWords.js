@@ -1,22 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-export default function CurrentWords({ setWordsHeight, wordList, letterIndex, level }) {
+export default function CurrentWords({ words, letterIndex, level, difficulty }) {
   const [levelReset, setLevelReset] = useState(true);
-  const [scrollSpeed/* , setScrollSpeed */] = useState(30);
+  const [scrollSpeed, setScrollSpeed] = useState(30);
   
   const spanRef = useRef();
 
   useEffect(() => {
-    if (wordList.length === 10) {
+    if (words.length === 10) {
       setLevelReset(true);
       setTimeout(() => {
         setLevelReset(false);
       }, 100);
     }
-  }, [wordList])
+  }, [words])
 
-  spanRef.current && console.log(spanRef.current.scrollHeight);
-  
   return (
     <section 
       style={{animationDuration: `${scrollSpeed - level * 2}s`}}
@@ -24,13 +22,13 @@ export default function CurrentWords({ setWordsHeight, wordList, letterIndex, le
         ? "current-words scrolling" 
         : "current-words hidden"}
     >
-      {wordList[0] && (!levelReset && wordList.map((word, index) => {
+      {words[0] && (!levelReset && words.map((word, index) => {
         return (
           <p key={index}>{
-            index < wordList.length - 1
+            index < words.length - 1
             ? word
             : (
-              wordList[wordList.length - 1].split('').map((letter, index) => {
+              words[words.length - 1].split('').map((letter, index) => {
                 return (
                   <span
                     ref={spanRef}

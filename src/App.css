@@ -110,13 +110,6 @@ aside {
   z-index: -1;
 }
 
-.floor {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: #282c34;
-}
-
 .game-over {
   position: absolute;
   width: 50%;
