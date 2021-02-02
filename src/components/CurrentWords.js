@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 export default function CurrentWords({ words, letterIndex, scrollSpeed }) {
   const [levelReset, setLevelReset] = useState(true);
   
-  const spanRef = useRef();
+  const sectionRef = useRef();
 
   useEffect(() => {
     if (words.length === 10) {
@@ -12,7 +12,11 @@ export default function CurrentWords({ words, letterIndex, scrollSpeed }) {
         setLevelReset(false);
       }, 100);
     }
-  }, [words])
+  }, [words]);
+
+  sectionRef.current && setInterval(() => {
+    console.log(sectionRef.current.scrollHeight, sectionRef.current.clientHeight);
+  }, 1000)
 
   return (
     <section 
@@ -20,6 +24,7 @@ export default function CurrentWords({ words, letterIndex, scrollSpeed }) {
       className={!levelReset 
         ? "current-words scrolling" 
         : "current-words hidden"}
+      ref={sectionRef}
     >
       {words[0] && (!levelReset && words.map((word, index) => {
         return (
@@ -30,7 +35,6 @@ export default function CurrentWords({ words, letterIndex, scrollSpeed }) {
               words[words.length - 1].split('').map((letter, index) => {
                 return (
                   <span
-                    ref={spanRef}
                     key={index}
                     style={index < letterIndex ? {fontWeight: "bold"} : null}
                   >

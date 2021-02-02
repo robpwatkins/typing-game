@@ -7,7 +7,7 @@
 .App {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   text-align: center;
   background-color: ghostwhite;
   min-height: 100vh;
@@ -58,7 +58,9 @@
 
 .typing-game {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -67,10 +69,10 @@
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
-  justify-content: center;
+  height: 100%;
+  justify-content: flex-start;
   /* align-items: center; */
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .visible {
@@ -93,11 +95,11 @@ aside {
 }
 
 .current-words {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 0;
-  justify-content: flex-start;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* width: 100%; */
+  height: 100%;
+  /* justify-content: flex-start; */
 }
 
 .current-words > p {
@@ -105,9 +107,9 @@ aside {
 }
 
 .scrolling {
-  position: relative;
+  /* position: relative; */
   animation: scroll linear;
-  z-index: -1;
+  /* z-index: -1; */
 }
 
 .game-over {
