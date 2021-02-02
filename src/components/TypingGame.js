@@ -43,7 +43,7 @@ export default function TypingGame({ gameStarted, setGameStarted, difficulty }) 
 
   useEffect(() => {
     setWords(buildWordList());
-    // let heightInterval = setInterval(scrollHeightChecker, 100);
+    // let heightInterval = setInterval(scrollHeightChecker, 1000);
     // return () => clearInterval(heightInterval);
   }, []);
 
@@ -79,12 +79,12 @@ export default function TypingGame({ gameStarted, setGameStarted, difficulty }) 
   })
 
   return (
-    <section className="typing-game">
-      <div className={!gameStarted ? "overlay visible" : "overlay"} ref={sectionRef}>
+    <section className="typing-game" ref={sectionRef}>
+      {/* <div className={!gameStarted ? "overlay visible" : "overlay"} ref={sectionRef}> */}
         <FX handleClick={() => setFxEnabled(!fxEnabled)} fxEnabled={fxEnabled} />
         <Level level={level} />
         <CurrentWords words={words} letterIndex={letterIndex} scrollSpeed={scrollSpeed} />
-      </div>
+      {/* </div> */}
       {gameOver && <GameOver />}
     </section>
   )

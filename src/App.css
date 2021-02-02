@@ -59,21 +59,21 @@
 .typing-game {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: auto;
   justify-content: flex-start;
   align-items: center;
 }
 
-.overlay {
+/* .overlay {
   position: relative;
   display: flex;
   flex-direction: column;
   width: 100vw;
   height: 100%;
-  justify-content: flex-start;
+  justify-content: flex-start; */
   /* align-items: center; */
   /* overflow: hidden; */
-}
+/* } */
 
 .visible {
   background: grey;
@@ -95,11 +95,11 @@ aside {
 }
 
 .current-words {
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* width: 100%; */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   height: 100%;
-  /* justify-content: flex-start; */
+  justify-content: flex-start;
 }
 
 .current-words > p {

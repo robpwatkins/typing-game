@@ -15,7 +15,7 @@ export default function CurrentWords({ words, letterIndex, scrollSpeed }) {
   }, [words]);
 
   sectionRef.current && setInterval(() => {
-    console.log(sectionRef.current.scrollHeight, sectionRef.current.clientHeight);
+    console.log(sectionRef.current.scrollHeight, sectionRef.current.clientHeight, sectionRef.current.offsetHeight, sectionRef.current.scrollTop);
   }, 1000)
 
   return (
