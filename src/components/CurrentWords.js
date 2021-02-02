@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-export default function CurrentWords({ words, letterIndex, level, difficulty }) {
+export default function CurrentWords({ words, letterIndex, scrollSpeed }) {
   const [levelReset, setLevelReset] = useState(true);
-  const [scrollSpeed, setScrollSpeed] = useState(30);
   
   const spanRef = useRef();
 
@@ -17,7 +16,7 @@ export default function CurrentWords({ words, letterIndex, level, difficulty }) 
 
   return (
     <section 
-      style={{animationDuration: `${scrollSpeed - level * 2}s`}}
+      style={{animationDuration: `${scrollSpeed}s`}}
       className={!levelReset 
         ? "current-words scrolling" 
         : "current-words hidden"}

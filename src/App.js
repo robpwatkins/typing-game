@@ -11,11 +11,15 @@ function App() {
     <div className={gameStarted ? "App game-started" : "App"}>
       { !gameStarted 
           ? <StartScreen
-            setGameStarted={setGameStarted}
-            difficulty={difficulty}
-            setDifficulty={setDifficulty}
-          />
-          : <TypingGame difficulty={difficulty} />}
+              setGameStarted={setGameStarted}
+              difficulty={difficulty}
+              setDifficulty={setDifficulty}
+            />
+          : <TypingGame 
+              gameStarted={gameStarted}
+              setGameStarted={setGameStarted}
+              difficulty={difficulty} 
+            />}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function StartScreen({ difficulty, setDifficulty, setGameStarted, words }) {
+export default function StartScreen({ difficulty, setDifficulty, setGameStarted }) {
   const [alert, setAlert] = useState(false);
 
   const handleSpanClick = event => {
