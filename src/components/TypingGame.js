@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import useSound from 'use-sound';
 import useKeyPress from '../hooks/useKeyPress';
 import Level from './Level';
@@ -8,11 +8,11 @@ import incorrectKeyStroke from '../sounds/incorrectKeyStroke.wav';
 import FX from './FX';
 import GameOver from './GameOver';
 
-export default function TypingGame({ gameStarted, setGameStarted, difficulty }) {
+export default function TypingGame({ difficulty }) {
   const [words, setWords] = useState([]);
   const [letterIndex, setLetterIndex] = useState(0);
   const [level, setLevel] = useState(1);
-  const [scrollSpeed, setScrollSpeed] = useState(15);
+  const [scrollSpeed, setScrollSpeed] = useState(35);
   const [missedKeystrokes, setMissedKeystrokes] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [fxEnabled, setFxEnabled] = useState(false);
@@ -27,30 +27,14 @@ export default function TypingGame({ gameStarted, setGameStarted, difficulty }) 
     .then(response => response.map(wordObj => wordObj.word));
   }
   
-  const buildWordList = async () => {
+  const buildWordList = useCallback(async () => {
     let fetchedWords = await fetchWords().then(response => response);
     setWords(fetchedWords);
-  }
-  
-  const scrollHeightChecker = () => {
-    // setInterval(() => {
-    let scrollHeight = sectionRef.current.scrollHeight;
-    let clientHeight = sectionRef.current.clientHeight;
-    console.log(scrollHeight, clientHeight);
-    return scrollHeight > clientHeight && setGameOver(true);
-    // }, 100);
-  }
+  }, [setWords])
 
-  useEffect(() => {
-    setWords(buildWordList());
-    // let heightInterval = setInterval(scrollHeightChecker, 1000);
-    // return () => clearInterval(heightInterval);
-  }, []);
-
-  // useEffect(() => {
-    // window.clearInterval(scrollHeightChecker);
-    // console.log('heyoo');
-  // }, [gameOver]);
+useEffect(() => {
+  setWords(buildWordList());
+}, [buildWordList]);
 
   useKeyPress(key => {
     let currentWord = words[words.length - 1];
@@ -80,12 +64,11 @@ export default function TypingGame({ gameStarted, setGameStarted, difficulty }) 
 
   return (
     <section className="typing-game" ref={sectionRef}>
-      {/* <div className={!gameStarted ? "overlay visible" : "overlay"} ref={sectionRef}> */}
-        <FX handleClick={() => setFxEnabled(!fxEnabled)} fxEnabled={fxEnabled} />
-        <Level level={level} />
-        <CurrentWords words={words} letterIndex={letterIndex} scrollSpeed={scrollSpeed} />
-      {/* </div> */}
-      {gameOver && <GameOver />}
+      <FX handleClick={() => setFxEnabled(!fxEnabled)} fxEnabled={fxEnabled} />
+      <Level level={level} />
+      {!gameOver 
+        ? <CurrentWords words={words} letterIndex={letterIndex} scrollSpeed={scrollSpeed} setGameOver={setGameOver} />
+        : <GameOver />}
     </section>
   )
 }

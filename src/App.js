@@ -5,7 +5,6 @@ import TypingGame from './components/TypingGame';
 
 function App() {
   const [gameStarted, setGameStarted] = useState(false);
-  const [gameOver, setGameOver] = useState(false);
   const [difficulty, setDifficulty] = useState(null);
 
   return (
