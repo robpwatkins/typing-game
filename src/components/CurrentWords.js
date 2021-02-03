@@ -14,6 +14,7 @@ export default function CurrentWords({ words, letterIndex, scrollSpeed, setGameO
   }
 
   useEffect(() => {
+    console.log(window.getComputedStyle(divRef.current));
     let heightInterval = setInterval(scrollHeightChecker, 100);
     return () => clearInterval(heightInterval);
   });
@@ -27,7 +28,6 @@ export default function CurrentWords({ words, letterIndex, scrollSpeed, setGameO
     }
   }, [words]);
 
-  divRef.current && console.log(window.getComputedStyle(divRef.current));
   return (
     <section className="words-container" ref={sectionRef}>
       <div 
