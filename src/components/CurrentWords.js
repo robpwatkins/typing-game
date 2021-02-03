@@ -4,6 +4,7 @@ export default function CurrentWords({ words, letterIndex, scrollSpeed, setGameO
   const [levelReset, setLevelReset] = useState(true);
   
   const sectionRef = useRef();
+  const divRef = useRef();
 
   const scrollHeightChecker = () => {
     let scrollHeight = sectionRef.current.scrollHeight;
@@ -26,13 +27,15 @@ export default function CurrentWords({ words, letterIndex, scrollSpeed, setGameO
     }
   }, [words]);
 
+  divRef.current && console.log(window.getComputedStyle(divRef.current));
   return (
     <section className="words-container" ref={sectionRef}>
       <div 
         style={{animationDuration: `${scrollSpeed}s`}}
         className={!levelReset 
           ? "current-words scrolling" 
-          : "current-words hidden"}
+          : "current-words"}
+        ref={divRef}
       >
         {words[0] && (!levelReset && words.map((word, index) => {
           return (

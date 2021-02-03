@@ -13,7 +13,6 @@ export default function TypingGame({ difficulty }) {
   const [letterIndex, setLetterIndex] = useState(0);
   const [level, setLevel] = useState(1);
   const [scrollSpeed, setScrollSpeed] = useState(35);
-  const [missedKeystrokes, setMissedKeystrokes] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [fxEnabled, setFxEnabled] = useState(false);
   const [playCorrectKeyStroke] = useSound(correctKeyStroke);
@@ -32,9 +31,9 @@ export default function TypingGame({ difficulty }) {
     setWords(fetchedWords);
   }, [setWords])
 
-useEffect(() => {
-  setWords(buildWordList());
-}, [buildWordList]);
+  useEffect(() => {
+    setWords(buildWordList());
+  }, [buildWordList]);
 
   useKeyPress(key => {
     let currentWord = words[words.length - 1];
@@ -48,7 +47,7 @@ useEffect(() => {
         if (tempWordList.length === 0) {
           setLevel(level + 1);
           setWords(buildWordList());
-          setScrollSpeed(scrollSpeed - 5);
+          setScrollSpeed(scrollSpeed - 2);
         } else
         setWords(tempWordList);
         setLetterIndex(0);
@@ -56,9 +55,10 @@ useEffect(() => {
       setLetterIndex(tempLetterIndex);
     } else {
       fxEnabled && playIncorrectKeyStroke();
-      (difficulty === 'medium' || difficulty === 'difficult') && setLetterIndex(0);
-      difficulty === 'difficult' && console.log('heyoo');
-      setMissedKeystrokes(missedKeystrokes + 1);
+      if (difficulty === 'medium' || difficulty === 'difficult') {
+        setLetterIndex(0);
+        if (difficulty === 'difficult') setScrollSpeed(scrollSpeed - 1);
+      }
     }
   })
 
