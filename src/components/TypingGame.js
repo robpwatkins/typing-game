@@ -12,7 +12,7 @@ export default function TypingGame({ difficulty }) {
   const [words, setWords] = useState([]);
   const [letterIndex, setLetterIndex] = useState(0);
   const [level, setLevel] = useState(1);
-  const [scrollSpeed, setScrollSpeed] = useState(35);
+  const [scrollSpeed, setScrollSpeed] = useState(25);
   const [gameOver, setGameOver] = useState(false);
   const [fxEnabled, setFxEnabled] = useState(false);
   const [playCorrectKeyStroke] = useSound(correctKeyStroke);

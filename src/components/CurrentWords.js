@@ -10,11 +10,11 @@ export default function CurrentWords({ words, letterIndex, scrollSpeed, setGameO
     let scrollHeight = sectionRef.current.scrollHeight;
     let clientHeight = sectionRef.current.clientHeight;
     console.log(scrollHeight, clientHeight);
+    divRef.current && console.log(window.getComputedStyle(divRef.current).webkitTransform);
     return scrollHeight > clientHeight && setGameOver(true);
   }
 
   useEffect(() => {
-    console.log(window.getComputedStyle(divRef.current));
     let heightInterval = setInterval(scrollHeightChecker, 100);
     return () => clearInterval(heightInterval);
   });
