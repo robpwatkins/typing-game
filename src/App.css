@@ -83,7 +83,7 @@ aside {
 }
 
 .scrolling {
-  animation: scroll linear;
+  /* animation: scroll linear; */
 }
 
 .game-over {
@@ -95,11 +95,11 @@ aside {
   border-radius: 15px;
 }
 
-@keyframes scroll {
+/* @keyframes scroll {
   0% {
     transform: translateY(-480px)
   }
   100% {
     transform: translateY(715px);
   }
-}
+} */

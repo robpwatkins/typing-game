@@ -1,4 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
+import styled, { keyframes } from 'styled-components';
+
+const scroll = keyframes`
+  from {
+    transform: translateY(-510px)
+  }
+  to {
+    transform: translateY(715px);
+  }
+`;
+
+const Scroll = styled.div`
+  animation: ${scroll} ${props => props.scrollSpeed}s linear;
+`;
 
 export default function CurrentWords({ words, letterIndex, scrollSpeed, setGameOver }) {
   const [levelReset, setLevelReset] = useState(true);
@@ -10,7 +24,6 @@ export default function CurrentWords({ words, letterIndex, scrollSpeed, setGameO
     let scrollHeight = sectionRef.current.scrollHeight;
     let clientHeight = sectionRef.current.clientHeight;
     console.log(scrollHeight, clientHeight);
-    divRef.current && console.log(window.getComputedStyle(divRef.current).webkitTransform);
     return scrollHeight > clientHeight && setGameOver(true);
   }
 
@@ -30,12 +43,14 @@ export default function CurrentWords({ words, letterIndex, scrollSpeed, setGameO
 
   return (
     <section className="words-container" ref={sectionRef}>
-      <div 
-        style={{animationDuration: `${scrollSpeed}s`}}
+      <Scroll 
+        // style={{animationDuration: `${scrollSpeed}s`}}
         className={!levelReset 
           ? "current-words scrolling" 
           : "current-words"}
         ref={divRef}
+        scrollSpeed={scrollSpeed}
+        // translateY={scrollSpeed}
       >
         {words[0] && (!levelReset && words.map((word, index) => {
           return (
@@ -57,7 +72,7 @@ export default function CurrentWords({ words, letterIndex, scrollSpeed, setGameO
             }</p>
           )
         }))}
-      </div>
+      </Scroll>
     </section>
   )
 }

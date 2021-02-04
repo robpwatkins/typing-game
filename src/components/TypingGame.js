@@ -57,7 +57,7 @@ export default function TypingGame({ difficulty }) {
       fxEnabled && playIncorrectKeyStroke();
       if (difficulty === 'medium' || difficulty === 'difficult') {
         setLetterIndex(0);
-        if (difficulty === 'difficult') setScrollSpeed(scrollSpeed - 1);
+        // if (difficulty === 'difficult') setScrollSpeed(scrollSpeed - 1);
       }
     }
   })
