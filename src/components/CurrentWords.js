@@ -47,10 +47,7 @@ export default function CurrentWords({ words, setWords, letterIndex, scrollSpeed
               : (
                 words[words.length - 1].split('').map((letter, index) => {
                   return (
-                    <span
-                      key={index}
-                      style={index < letterIndex ? {fontWeight: "bold"} : null}
-                    >
+                    <span key={index} style={index < letterIndex ? {fontWeight: "bold"} : null}>
                       {letter}
                     </span>
                   )

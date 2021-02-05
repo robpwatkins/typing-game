@@ -15,6 +15,7 @@ export default function TypingGame({ difficulty }) {
   const [scrollSpeed, setScrollSpeed] = useState(25);
   const [gameOver, setGameOver] = useState(false);
   const [fxEnabled, setFxEnabled] = useState(false);
+  const [missedKeystrokes, setMissedKeystrokes] = useState(0);
   const [playKeystroke] = useSound(correctKeyStroke);
   const [playMissedKeystroke] = useSound(incorrectKeyStroke);
   
@@ -57,6 +58,7 @@ export default function TypingGame({ difficulty }) {
       fxEnabled && playMissedKeystroke();
       if (difficulty === 'medium' || difficulty === 'difficult') {
         setLetterIndex(0);
+        // if (difficulty === 'difficult') setScrollSpeed(scrollSpeed - 1);
       }
     }
   })
@@ -65,7 +67,7 @@ export default function TypingGame({ difficulty }) {
     <section className="typing-game" ref={sectionRef}>
       <FX handleClick={() => setFxEnabled(!fxEnabled)} fxEnabled={fxEnabled} />
       <Level level={level} />
-      {words.length && 
+      {words[0] && 
         <CurrentWords 
           words={words} 
           setWords={setWords} 

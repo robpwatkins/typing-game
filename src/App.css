@@ -79,7 +79,8 @@ aside {
 }
 
 .shove {
-  margin-top: 50px;
+  /* background: hotpink;
+  transform: translateY(50px); */
 }
 
 .game-over {
