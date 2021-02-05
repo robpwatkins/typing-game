@@ -12,19 +12,23 @@ const scroll = keyframes`
 
 const Scroll = styled.div`
   animation: ${scroll} ${props => props.scrollSpeed}s linear;
+  > p {
+    margin: 15px 0 0 0;
+  }
 `;
 
-export default function CurrentWords({ words, letterIndex, scrollSpeed, setGameOver }) {
-  const [levelReset, setLevelReset] = useState(true);
-  
-  const sectionRef = useRef();
-  const divRef = useRef();
+export default function CurrentWords({ words, setWords, letterIndex, scrollSpeed, setGameOver }) {  
+  const containerRef = useRef();
+  const scrollRef = useRef();
 
   const scrollHeightChecker = () => {
-    let scrollHeight = sectionRef.current.scrollHeight;
-    let clientHeight = sectionRef.current.clientHeight;
+    let scrollHeight = containerRef.current.scrollHeight;
+    let clientHeight = containerRef.current.clientHeight;
     console.log(scrollHeight, clientHeight);
-    return scrollHeight > clientHeight && setGameOver(true);
+    if (scrollHeight > clientHeight) {
+      setGameOver(true);
+      setWords([]);
+    }
   }
 
   useEffect(() => {
@@ -32,27 +36,10 @@ export default function CurrentWords({ words, letterIndex, scrollSpeed, setGameO
     return () => clearInterval(heightInterval);
   });
 
-  useEffect(() => {
-    if (words.length === 10) {
-      setLevelReset(true);
-      setTimeout(() => {
-        setLevelReset(false);
-      }, 100);
-    }
-  }, [words]);
-
   return (
-    <section className="words-container" ref={sectionRef}>
-      <Scroll 
-        // style={{animationDuration: `${scrollSpeed}s`}}
-        className={!levelReset 
-          ? "current-words scrolling" 
-          : "current-words"}
-        ref={divRef}
-        scrollSpeed={scrollSpeed}
-        // translateY={scrollSpeed}
-      >
-        {words[0] && (!levelReset && words.map((word, index) => {
+    <section className="words-container" ref={containerRef}>
+      <Scroll ref={scrollRef} scrollSpeed={scrollSpeed}>
+        {words.map((word, index) => {
           return (
             <p key={index}>{
               index < words.length - 1
@@ -71,7 +58,7 @@ export default function CurrentWords({ words, letterIndex, scrollSpeed, setGameO
               )
             }</p>
           )
-        }))}
+        })}
       </Scroll>
     </section>
   )

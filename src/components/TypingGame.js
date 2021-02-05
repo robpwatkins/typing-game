@@ -15,8 +15,8 @@ export default function TypingGame({ difficulty }) {
   const [scrollSpeed, setScrollSpeed] = useState(25);
   const [gameOver, setGameOver] = useState(false);
   const [fxEnabled, setFxEnabled] = useState(false);
-  const [playCorrectKeyStroke] = useSound(correctKeyStroke);
-  const [playIncorrectKeyStroke] = useSound(incorrectKeyStroke);
+  const [playKeystroke] = useSound(correctKeyStroke);
+  const [playMissedKeystroke] = useSound(incorrectKeyStroke);
   
   const sectionRef = useRef();
   
@@ -39,7 +39,7 @@ export default function TypingGame({ difficulty }) {
     let currentWord = words[words.length - 1];
     let currentLetter = currentWord.charAt(letterIndex);
     if (key === currentLetter) {
-      fxEnabled && playCorrectKeyStroke();
+      fxEnabled && playKeystroke();
       let tempLetterIndex = letterIndex + 1;
       if (currentWord.length === tempLetterIndex) {
         let tempWordList = words.slice();
@@ -54,10 +54,9 @@ export default function TypingGame({ difficulty }) {
       } else
       setLetterIndex(tempLetterIndex);
     } else {
-      fxEnabled && playIncorrectKeyStroke();
+      fxEnabled && playMissedKeystroke();
       if (difficulty === 'medium' || difficulty === 'difficult') {
         setLetterIndex(0);
-        // if (difficulty === 'difficult') setScrollSpeed(scrollSpeed - 1);
       }
     }
   })
@@ -66,9 +65,15 @@ export default function TypingGame({ difficulty }) {
     <section className="typing-game" ref={sectionRef}>
       <FX handleClick={() => setFxEnabled(!fxEnabled)} fxEnabled={fxEnabled} />
       <Level level={level} />
-      {!gameOver 
-        ? <CurrentWords words={words} letterIndex={letterIndex} scrollSpeed={scrollSpeed} setGameOver={setGameOver} />
-        : <GameOver />}
+      {words.length && 
+        <CurrentWords 
+          words={words} 
+          setWords={setWords} 
+          letterIndex={letterIndex} 
+          scrollSpeed={scrollSpeed} 
+          setGameOver={setGameOver}
+        />}
+      {gameOver && <GameOver />}
     </section>
   )
 }

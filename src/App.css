@@ -78,12 +78,8 @@ aside {
   justify-content: flex-start;
 }
 
-.current-words > p {
-  margin: 15px 0 0 0;
-}
-
-.scrolling {
-  /* animation: scroll linear; */
+.shove {
+  margin-top: 50px;
 }
 
 .game-over {
@@ -94,12 +90,3 @@ aside {
   background: ghostwhite;
   border-radius: 15px;
 }
-
-/* @keyframes scroll {
-  0% {
-    transform: translateY(-480px)
-  }
-  100% {
-    transform: translateY(715px);
-  }
-} */
