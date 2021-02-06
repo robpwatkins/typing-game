@@ -20,13 +20,15 @@ export default function TypingGame({ difficulty }) {
   const [playKeystroke] = useSound(correctKeyStroke);
   const [playMissedKeystroke] = useSound(incorrectKeyStroke);
   
-  const buildWordList = useCallback(async () => {
-    let fetchedWords = await fetchWords().then(response => response);
+  const buildWordList = useCallback(async (minLength, maxLength) => {
+    let fetchedWords = await fetchWords(minLength, maxLength).then(response => response);
     setWords(fetchedWords);
   }, [setWords]);
 
   useEffect(() => {
-    buildWordList();
+    if (difficulty === 'easy' || difficulty === 'medium') {
+      buildWordList(4, 9);
+    } else buildWordList(9, 15);
   }, [buildWordList]);
 
   useKeyPress(key => {
@@ -50,11 +52,10 @@ export default function TypingGame({ difficulty }) {
     } else {
       fxEnabled && playMissedKeystroke();
       (difficulty === 'medium' || difficulty === 'difficult') && setLetterIndex(0);
-        // if (difficulty === 'difficult') setScrollSpeed(scrollSpeed - 1);
+        // if (difficulty === 'difficult') setMissedKeystrokes(missedKeystrokes + 15);
     }
   })
 
-  console.log(words);
   return (
     <section className="typing-game">
       <FX handleClick={() => setFxEnabled(!fxEnabled)} fxEnabled={fxEnabled} />

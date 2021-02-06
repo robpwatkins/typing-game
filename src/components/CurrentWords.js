@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const scroll = keyframes`
@@ -19,13 +19,11 @@ const Scroll = styled.div`
 
 export default function CurrentWords({ words, setWords, letterIndex, scrollSpeed, setGameOver }) {  
   const containerRef = useRef();
-  const scrollRef = useRef();
 
   const scrollHeightChecker = () => {
     let scrollHeight = containerRef.current.scrollHeight;
     let clientHeight = containerRef.current.clientHeight;
-    console.log(scrollHeight, clientHeight);
-    if (scrollHeight > clientHeight) {
+    if (scrollHeight > clientHeight + 5) {
       setGameOver(true);
       setWords([]);
     }
@@ -38,7 +36,7 @@ export default function CurrentWords({ words, setWords, letterIndex, scrollSpeed
 
   return (
     <section className="words-container" ref={containerRef}>
-      <Scroll ref={scrollRef} scrollSpeed={scrollSpeed}>
+      <Scroll scrollSpeed={scrollSpeed}>
         {words.map((word, index) => {
           return (
             <p key={index}>{
