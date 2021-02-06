@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import useSound from 'use-sound';
-import useKeyPress from '../hooks/useKeyPress';
+import { useKeyPress } from '../hooks/useKeyPress';
+import { fetchWords } from '../fetchWords';
 import Level from './Level';
 import CurrentWords from './CurrentWords';
 import correctKeyStroke from '../sounds/correctKeyStroke2.wav';
@@ -19,21 +20,13 @@ export default function TypingGame({ difficulty }) {
   const [playKeystroke] = useSound(correctKeyStroke);
   const [playMissedKeystroke] = useSound(incorrectKeyStroke);
   
-  const sectionRef = useRef();
-  
-  const fetchWords = () => {
-    return fetch(`https://api.wordnik.com/v4/words.json/randomWords?minCorpusCount=10000&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=4&maxLength=9&limit=10&api_key=${process.env.REACT_APP_WORDNIK_API_KEY}`)
-    .then(res => res.json())
-    .then(response => response.map(wordObj => wordObj.word));
-  }
-  
   const buildWordList = useCallback(async () => {
     let fetchedWords = await fetchWords().then(response => response);
     setWords(fetchedWords);
-  }, [setWords])
+  }, [setWords]);
 
   useEffect(() => {
-    setWords(buildWordList());
+    buildWordList();
   }, [buildWordList]);
 
   useKeyPress(key => {
@@ -56,18 +49,17 @@ export default function TypingGame({ difficulty }) {
       setLetterIndex(tempLetterIndex);
     } else {
       fxEnabled && playMissedKeystroke();
-      if (difficulty === 'medium' || difficulty === 'difficult') {
-        setLetterIndex(0);
+      (difficulty === 'medium' || difficulty === 'difficult') && setLetterIndex(0);
         // if (difficulty === 'difficult') setScrollSpeed(scrollSpeed - 1);
-      }
     }
   })
 
+  console.log(words);
   return (
-    <section className="typing-game" ref={sectionRef}>
+    <section className="typing-game">
       <FX handleClick={() => setFxEnabled(!fxEnabled)} fxEnabled={fxEnabled} />
       <Level level={level} />
-      {words[0] && 
+      {words.length > 0 && 
         <CurrentWords 
           words={words} 
           setWords={setWords} 

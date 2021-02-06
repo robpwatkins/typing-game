@@ -8,7 +8,7 @@ function App() {
   const [difficulty, setDifficulty] = useState(null);
 
   return (
-    <div className={gameStarted ? "App game-started" : "App"}>
+    <div className="App">
       {!gameStarted 
         ? <StartScreen
             setGameStarted={setGameStarted}

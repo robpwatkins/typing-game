@@ -24,6 +24,10 @@
   position: relative;
 }
 
+.start-screen > h3 {
+  font-style: italic;
+}
+
 .start-screen > span {
   cursor: default;
   font-size: 18px;
