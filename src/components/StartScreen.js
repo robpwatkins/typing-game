@@ -13,7 +13,7 @@ export default function StartScreen({ difficulty, setDifficulty, setGameStarted 
 
   return (
     <section className="start-screen">
-      <h3>Speed Typerrrrr</h3>
+      <h3>Speed Typer</h3>
       {(alert && !difficulty) && <p><em>Please make a selection:</em></p>}
       <span className={difficulty === "easy" ? "active" : null} onClick={handleSpanClick}>
         easy
