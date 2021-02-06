@@ -16,19 +16,30 @@ export default function TypingGame({ difficulty }) {
   const [scrollSpeed, setScrollSpeed] = useState(25);
   const [gameOver, setGameOver] = useState(false);
   const [fxEnabled, setFxEnabled] = useState(false);
-  const [missedKeystrokes, setMissedKeystrokes] = useState(0);
   const [playKeystroke] = useSound(correctKeyStroke);
   const [playMissedKeystroke] = useSound(incorrectKeyStroke);
   
-  const buildWordList = useCallback(async (minLength, maxLength) => {
+  const buildWordList = useCallback(async () => {
+    let minLength, maxLength;
+    if (difficulty === 'easy') {
+      console.log('easy', true);
+      minLength = 3;
+      maxLength = 7;
+    } else if (difficulty === 'medium') {
+      console.log('medium: ', true);
+      minLength = 4
+      maxLength = 9;
+    } else {
+      console.log('difficult: ', true)
+      minLength = 9
+      maxLength = 15;
+    }
     let fetchedWords = await fetchWords(minLength, maxLength).then(response => response);
     setWords(fetchedWords);
   }, [setWords]);
 
   useEffect(() => {
-    if (difficulty === 'easy' || difficulty === 'medium') {
-      buildWordList(4, 9);
-    } else buildWordList(9, 15);
+    buildWordList();
   }, [buildWordList]);
 
   useKeyPress(key => {
@@ -52,7 +63,6 @@ export default function TypingGame({ difficulty }) {
     } else {
       fxEnabled && playMissedKeystroke();
       (difficulty === 'medium' || difficulty === 'difficult') && setLetterIndex(0);
-        // if (difficulty === 'difficult') setMissedKeystrokes(missedKeystrokes + 15);
     }
   })
 
