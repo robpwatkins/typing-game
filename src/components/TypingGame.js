@@ -8,6 +8,7 @@ import correctKeyStroke from '../sounds/correctKeyStroke2.wav';
 import incorrectKeyStroke from '../sounds/incorrectKeyStroke.wav';
 import FX from './FX';
 import GameOver from './GameOver';
+import Difficulty from './Difficulty';
 
 export default function TypingGame({ difficulty }) {
   const [words, setWords] = useState([]);
@@ -68,8 +69,11 @@ export default function TypingGame({ difficulty }) {
 
   return (
     <section className="typing-game">
-      <FX handleClick={() => setFxEnabled(!fxEnabled)} fxEnabled={fxEnabled} />
-      <Level level={level} />
+      <div className="game-info">
+        <Level level={level} />
+        <Difficulty difficulty={difficulty} />
+        <FX handleClick={() => setFxEnabled(!fxEnabled)} fxEnabled={fxEnabled} />
+      </div>
       {words.length > 0 && 
         <CurrentWords 
           words={words} 

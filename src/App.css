@@ -63,16 +63,28 @@
   align-items: center;
 }
 
-aside {
+.game-info {
   position: absolute;
   top: 40px;
   left: 50px;
+  text-align: start;
 }
+
+.difficulty > p {
+  padding-left: 15px;
+  font-size: 18px;
+}
+
+/* aside {
+  position: absolute;
+  top: 40px;
+  left: 50px;
+} */
 
 .fx {
   position: absolute;
-  top: 105px;
-  left: 40px;
+  /* top: 105px; */
+  margin-left: -14px;
 }
 
 .words-container {
