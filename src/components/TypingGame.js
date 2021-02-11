@@ -16,6 +16,8 @@ export default function TypingGame({ difficulty }) {
   const [startTime, setStartTime] = useState();
   const [letterIndex, setLetterIndex] = useState(0);
   const [wordCount, setWordCount] = useState(0);
+  const [typedCharCount, setTypedCharCount] = useState(0);
+  const [correctCharCount, setCorrectCharCount] = useState(0);
   const [level, setLevel] = useState(1);
   const [scrollSpeed, setScrollSpeed] = useState(25);
   const [gameOver, setGameOver] = useState(false);
@@ -46,10 +48,12 @@ export default function TypingGame({ difficulty }) {
 
   useKeyPress(key => {
     !startTime && setStartTime(currentTime());
+    setTypedCharCount(typedCharCount + 1);
     let currentWord = words[words.length - 1];
     let currentLetter = currentWord.charAt(letterIndex);
     if (key === currentLetter) {
       fxEnabled && playKeystroke();
+      setCorrectCharCount(correctCharCount + 1);
       let tempLetterIndex = letterIndex + 1;
       if (currentWord.length === tempLetterIndex) {
         let tempWordList = words.slice();
@@ -86,7 +90,13 @@ export default function TypingGame({ difficulty }) {
           setGameOver={setGameOver}
         />}
       {gameOver && 
-        <GameOver wordCount={wordCount} startTime={startTime} wpm={wpm} />}
+        <GameOver 
+          wordCount={wordCount} 
+          startTime={startTime} 
+          wpm={wpm} 
+          typedCharCount={typedCharCount}
+          correctCharCount={correctCharCount}
+        />}
     </section>
   )
 }

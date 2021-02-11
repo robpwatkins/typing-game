@@ -1,7 +1,7 @@
 import React from 'react';
 import { currentTime } from '../utils/time';
 
-export default function GameOver({ wordCount, startTime, wpm }) {
+export default function GameOver({ wordCount, startTime, typedCharCount, correctCharCount }) {
 
   const durationInMinutes = (currentTime() - startTime) / 60000.0;
 
@@ -9,6 +9,7 @@ export default function GameOver({ wordCount, startTime, wpm }) {
     <section className="game-over">
       <h3>Game Over!</h3>
       <p>WPM: {(wordCount / durationInMinutes).toFixed(2)}</p>
+      <p>Accuracy: {((correctCharCount * 100) / typedCharCount).toFixed(2)}%</p>
     </section>
   )
 }

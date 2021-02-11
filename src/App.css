@@ -109,3 +109,7 @@
   background: ghostwhite;
   border-radius: 15px;
 }
+
+.game-over > p {
+  font-size: 75%;
+}
