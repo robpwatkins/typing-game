@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import useSound from 'use-sound';
-import { useKeyPress } from '../hooks/useKeyPress';
 import { fetchWords } from '../fetchWords';
+import { currentTime } from '../utils/time';
+import { useKeyPress } from '../hooks/useKeyPress';
 import Level from './Level';
 import CurrentWords from './CurrentWords';
 import correctKeyStroke from '../sounds/correctKeyStroke2.wav';
@@ -12,10 +13,13 @@ import Difficulty from './Difficulty';
 
 export default function TypingGame({ difficulty }) {
   const [words, setWords] = useState([]);
+  const [startTime, setStartTime] = useState();
   const [letterIndex, setLetterIndex] = useState(0);
+  const [wordCount, setWordCount] = useState(0);
   const [level, setLevel] = useState(1);
   const [scrollSpeed, setScrollSpeed] = useState(25);
   const [gameOver, setGameOver] = useState(false);
+  const [wpm, setWpm] = useState(0);
   const [fxEnabled, setFxEnabled] = useState(false);
   const [playKeystroke] = useSound(correctKeyStroke);
   const [playMissedKeystroke] = useSound(incorrectKeyStroke);
@@ -44,6 +48,7 @@ export default function TypingGame({ difficulty }) {
   }, [buildWordList]);
 
   useKeyPress(key => {
+    !startTime && setStartTime(currentTime());
     let currentWord = words[words.length - 1];
     let currentLetter = currentWord.charAt(letterIndex);
     if (key === currentLetter) {
@@ -52,6 +57,7 @@ export default function TypingGame({ difficulty }) {
       if (currentWord.length === tempLetterIndex) {
         let tempWordList = words.slice();
         tempWordList.pop();
+        setWordCount(wordCount + 1);
         if (tempWordList.length === 0) {
           setLevel(level + 1);
           setWords(buildWordList());
@@ -82,7 +88,8 @@ export default function TypingGame({ difficulty }) {
           scrollSpeed={scrollSpeed} 
           setGameOver={setGameOver}
         />}
-      {gameOver && <GameOver />}
+      {gameOver && 
+        <GameOver wordCount={wordCount} startTime={startTime} wpm={wpm} />}
     </section>
   )
 }
