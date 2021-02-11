@@ -5,8 +5,8 @@ export default function FX({ fxEnabled, handleClick }) {
   return (
     <div className="fx">
       {fxEnabled 
-        ? <VolumeMute style={{fontSize: "50px", paddingTop: "5px"}} onClick={handleClick} />
-        : <VolumeOff style={{fontSize: "55px", paddingLeft: "10px"}} onClick={handleClick} />
+        ? <VolumeMute style={{fontSize: "4vh", marginLeft: "-3.5%"}} onClick={handleClick} />
+        : <VolumeOff style={{fontSize: "4vh"}} onClick={handleClick} />
       }
     </div>
   )

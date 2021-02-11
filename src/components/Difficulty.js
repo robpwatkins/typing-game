@@ -3,8 +3,8 @@ import React from 'react';
 export default function Difficulty({ difficulty }) {
   return (
     <section className="difficulty">
-      <h6>{difficulty}:</h6>
-      {difficulty === 'easy' && (
+      <h6>{difficulty}</h6>
+      {/* {difficulty === 'easy' && (
         <>
           <p>missed keystrokes ok</p>
           <p>4-7 letters</p>
@@ -21,7 +21,7 @@ export default function Difficulty({ difficulty }) {
           <p>missed keystrokes narp</p>
           <p>9-15 letters</p>
         </>
-      )}
+      )} */}
     </section>
   )
 }

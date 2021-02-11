@@ -15,7 +15,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(15px + 2vmin);
+  font-size: 4vh;
   font-family: 'Courier New', Courier, monospace;
   color: #282c34;
 }
@@ -30,7 +30,7 @@
 
 .start-screen > span {
   cursor: default;
-  font-size: 18px;
+  font-size: 70%;
 }
 
 .start-screen > span:nth-last-child(odd):hover {
@@ -39,7 +39,8 @@
 }
 
 .start-screen > button {
-  padding: 1px;
+  padding: .5%;
+  font-size: 45%;
   font-family: 'Courier New', Courier, monospace;
 }
 
@@ -49,10 +50,10 @@
 
 .start-screen > p {
   position: absolute;
-  top: 38px;
+  top: 33%;
   width: 100%;
-  height: 0px;
-  font-size: 15px;
+  /* height: 0px; */
+  font-size: 50%;
 }
 
 .typing-game {
@@ -82,9 +83,10 @@
 } */
 
 .fx {
-  position: absolute;
+  /* width: 0; */
+  /* position: absolute; */
   /* top: 105px; */
-  margin-left: -14px;
+  /* margin-left: -14px; */
 }
 
 .words-container {
