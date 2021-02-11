@@ -8,7 +8,7 @@ export default function GameOver({ wordCount, startTime, wpm }) {
   return (
     <section className="game-over">
       <h3>Game Over!</h3>
-      <h3>WPM: {(wordCount / durationInMinutes).toFixed(2)}</h3>
+      <p>WPM: {(wordCount / durationInMinutes).toFixed(2)}</p>
     </section>
   )
 }

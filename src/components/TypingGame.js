@@ -27,15 +27,12 @@ export default function TypingGame({ difficulty }) {
   const buildWordList = useCallback(async () => {
     let minLength, maxLength;
     if (difficulty === 'easy') {
-      console.log('easy', true);
       minLength = 3;
       maxLength = 7;
     } else if (difficulty === 'medium') {
-      console.log('medium: ', true);
       minLength = 4
       maxLength = 9;
     } else {
-      console.log('difficult: ', true)
       minLength = 9
       maxLength = 15;
     }
