@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import useSound from 'use-sound';
-import { fetchWords } from '../fetchWords';
+import { fetchWords } from '../utils/fetchWords';
 import { currentTime } from '../utils/time';
 import { useKeyPress } from '../hooks/useKeyPress';
 import Level from './Level';
