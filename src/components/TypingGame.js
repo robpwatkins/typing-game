@@ -17,7 +17,7 @@ export default function TypingGame({ difficulty, setGameStarted }) {
   const [typedCharCount, setTypedCharCount] = useState(0);
   const [correctCharCount, setCorrectCharCount] = useState(0);
   const [level, setLevel] = useState(1);
-  const [scrollSpeed, setScrollSpeed] = useState(26);
+  const [scrollSpeed, setScrollSpeed] = useState(25);
   const [gameOver, setGameOver] = useState(false);
   const [fxEnabled, setFxEnabled] = useState(false);
   const [playKeystroke] = useSound(correctKeyStroke);
@@ -37,7 +37,7 @@ export default function TypingGame({ difficulty, setGameStarted }) {
     }
     let fetchedWords = await fetchWords(minLength, maxLength).then(response => response);
     setWords(fetchedWords);
-  }, [setWords]);
+  }, [difficulty, setWords]);
 
   useEffect(() => {
     !gameOver && buildWordList();
@@ -58,7 +58,7 @@ export default function TypingGame({ difficulty, setGameStarted }) {
         if (tempWordList.length === 0) {
           setLevel(level + 1);
           setWords(buildWordList());
-          setScrollSpeed(scrollSpeed - 2);
+          setScrollSpeed(scrollSpeed * .9);
         } else
         setWords(tempWordList);
         setLetterIndex(0);
@@ -70,6 +70,7 @@ export default function TypingGame({ difficulty, setGameStarted }) {
     }
   })
 
+  console.log(scrollSpeed);
   return (
     <section className="typing-game">
       <div className="game-info">
