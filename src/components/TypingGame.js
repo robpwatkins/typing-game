@@ -10,7 +10,7 @@ import incorrectKeyStroke from '../sounds/incorrectKeyStroke.wav';
 import FX from './FX';
 import GameOver from './GameOver';
 
-export default function TypingGame({ difficulty, setGameStarted }) {
+export default function TypingGame({ difficulty, gameStarted, setGameStarted }) {
   const [words, setWords] = useState([]);
   const [startTime, setStartTime] = useState();
   const [letterIndex, setLetterIndex] = useState(0);
@@ -19,6 +19,7 @@ export default function TypingGame({ difficulty, setGameStarted }) {
   const [level, setLevel] = useState(1);
   const [scrollSpeed, setScrollSpeed] = useState(25);
   const [gameOver, setGameOver] = useState(false);
+  const [restart, setRestart] = useState(false);
   const [fxEnabled, setFxEnabled] = useState(false);
   const [playKeystroke] = useSound(correctKeyStroke);
   const [playMissedKeystroke] = useSound(incorrectKeyStroke);
@@ -42,6 +43,18 @@ export default function TypingGame({ difficulty, setGameStarted }) {
   useEffect(() => {
     !gameOver && buildWordList();
   }, [buildWordList, gameOver]);
+
+  useEffect(() => {
+    if (restart) {
+      setStartTime(null);
+      setLetterIndex(0);
+      setTypedCharCount(0);
+      setCorrectCharCount(0);
+      setLevel(1);
+      setScrollSpeed(25);
+      setRestart(false);
+    }
+  }, [restart]);
 
   useKeyPress(key => {
     if (!gameOver) {
@@ -72,6 +85,7 @@ export default function TypingGame({ difficulty, setGameStarted }) {
     }
   })
 
+  console.log(correctCharCount, typedCharCount, scrollSpeed)
   return (
     <section className="typing-game">
       <div className="game-info">
@@ -93,6 +107,7 @@ export default function TypingGame({ difficulty, setGameStarted }) {
           typedCharCount={typedCharCount}
           correctCharCount={correctCharCount}
           setGameOver={setGameOver}
+          setRestart={setRestart}
           setGameStarted={setGameStarted}
         />}
     </section>
