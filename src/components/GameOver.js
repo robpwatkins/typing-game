@@ -20,8 +20,8 @@ export default function GameOver({
   return (
     <section className="game-over">
       <h3>Game Over!</h3>
-      <p>WPM: {((correctCharCount / 5) / durationInMinutes).toFixed(2)}</p>
-      <p>Accuracy: {((correctCharCount * 100) / typedCharCount).toFixed(2)}%</p>
+      <p>WPM: {((correctCharCount / 5) / durationInMinutes).toFixed(1)}</p>
+      <p>Accuracy: {((correctCharCount * 100) / typedCharCount).toFixed(1)}%</p>
       <div className="button-box">
         <button onClick={() => {
           setGameOver(false)

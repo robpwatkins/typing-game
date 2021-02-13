@@ -4,7 +4,7 @@ import { fetchWords } from '../utils/fetchWords';
 import { currentTime } from '../utils/time';
 import { useKeyPress } from '../hooks/useKeyPress';
 import Level from './Level';
-import CurrentWords from './CurrentWords';
+import Words from './Words';
 import correctKeyStroke from '../sounds/correctKeyStroke2.wav';
 import incorrectKeyStroke from '../sounds/incorrectKeyStroke.wav';
 import FX from './FX';
@@ -30,10 +30,10 @@ export default function TypingGame({ difficulty, gameStarted, setGameStarted }) 
       minLength = 3;
       maxLength = 7;
     } else if (difficulty === 'medium') {
-      minLength = 4
-      maxLength = 9;
+      minLength = 6;
+      maxLength = 10;
     } else {
-      minLength = 9
+      minLength = 9;
       maxLength = 15;
     }
     let fetchedWords = await fetchWords(minLength, maxLength).then(response => response);
@@ -85,7 +85,6 @@ export default function TypingGame({ difficulty, gameStarted, setGameStarted }) 
     }
   })
 
-  console.log(correctCharCount, typedCharCount, scrollSpeed)
   return (
     <section className="typing-game">
       <div className="game-info">
@@ -94,7 +93,7 @@ export default function TypingGame({ difficulty, gameStarted, setGameStarted }) 
         <FX handleClick={() => setFxEnabled(!fxEnabled)} fxEnabled={fxEnabled} />
       </div>
       {words.length > 0 && 
-        <CurrentWords 
+        <Words 
           words={words} 
           setWords={setWords} 
           letterIndex={letterIndex} 
