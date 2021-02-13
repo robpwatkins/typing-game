@@ -20,10 +20,6 @@
   color: #282c34;
 }
 
-.start-screen {
-  position: relative;
-}
-
 .start-screen > h3 {
   font-style: italic;
 }
@@ -46,13 +42,6 @@ button {
 
 .active {
   font-weight: bold;
-}
-
-.start-screen > p {
-  position: absolute;
-  top: 33%;
-  width: 100%;
-  font-size: 50%;
 }
 
 .typing-game {
@@ -82,8 +71,7 @@ button {
 }
 
 .game-over {
-  position: absolute;
-  height: 35%;
+  /* position: absolute; */
   background: ghostwhite;
 }
 

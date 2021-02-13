@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { currentTime } from '../utils/time';
 
 export default function GameOver({ startTime, typedCharCount, correctCharCount, setGameOver, setGameStarted }) {
+  const [endTime, setEndTime] = useState();
+  
+  useEffect(() => {
+    setEndTime(currentTime());
+  }, [setEndTime])
 
-  const durationInMinutes = (currentTime() - startTime) / 60000.0;
+  const durationInMinutes = (endTime - startTime) / 60000.0;
 
   return (
     <section className="game-over">

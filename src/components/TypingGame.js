@@ -44,33 +44,34 @@ export default function TypingGame({ difficulty, setGameStarted }) {
   }, [buildWordList, gameOver]);
 
   useKeyPress(key => {
-    !startTime && setStartTime(currentTime());
-    setTypedCharCount(typedCharCount + 1);
-    let currentWord = words[words.length - 1];
-    let currentLetter = currentWord.charAt(letterIndex);
-    if (key === currentLetter) {
-      fxEnabled && playKeystroke();
-      setCorrectCharCount(correctCharCount + 1);
-      let tempLetterIndex = letterIndex + 1;
-      if (currentWord.length === tempLetterIndex) {
-        let tempWordList = words.slice();
-        tempWordList.pop();
-        if (tempWordList.length === 0) {
-          setLevel(level + 1);
-          setWords(buildWordList());
-          setScrollSpeed(scrollSpeed * .9);
+    if (!gameOver) {
+      !startTime && setStartTime(currentTime());
+      setTypedCharCount(typedCharCount + 1);
+      let currentWord = words[words.length - 1];
+      let currentLetter = currentWord.charAt(letterIndex);
+      if (key === currentLetter) {
+        fxEnabled && playKeystroke();
+        setCorrectCharCount(correctCharCount + 1);
+        let tempLetterIndex = letterIndex + 1;
+        if (currentWord.length === tempLetterIndex) {
+          let tempWordList = words.slice();
+          tempWordList.pop();
+          if (tempWordList.length === 0) {
+            setLevel(level + 1);
+            setWords(buildWordList());
+            setScrollSpeed(scrollSpeed * .9);
+          } else
+          setWords(tempWordList);
+          setLetterIndex(0);
         } else
-        setWords(tempWordList);
-        setLetterIndex(0);
-      } else
-      setLetterIndex(tempLetterIndex);
-    } else {
-      fxEnabled && playMissedKeystroke();
-      (difficulty === 'medium' || difficulty === 'difficult') && setLetterIndex(0);
+        setLetterIndex(tempLetterIndex);
+      } else {
+        fxEnabled && playMissedKeystroke();
+        (difficulty === 'medium' || difficulty === 'difficult') && setLetterIndex(0);
+      }
     }
   })
 
-  console.log(scrollSpeed);
   return (
     <section className="typing-game">
       <div className="game-info">
