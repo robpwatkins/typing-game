@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 
 const scroll = keyframes`
   from {
-    transform: translateY(-75vh)
+    transform: translateY(-75vh);
   }
   to {
     transform: translateY(100vh);
