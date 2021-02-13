@@ -1,20 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 export default function StartScreen({ difficulty, setDifficulty, setGameStarted }) {
-  const [alert, setAlert] = useState(false);
 
   const handleSpanClick = event => {
     setDifficulty(event.target.innerText);
   }
 
   const handleStartClick = () => {
-    difficulty ? setGameStarted(true) : setAlert(true);
+    difficulty && setGameStarted(true);
   }
 
   return (
     <section className="start-screen">
       <h3>Speed Typer</h3>
-      {(alert && !difficulty) && <p><em>Please make a selection:</em></p>}
       <span className={difficulty === "easy" ? "active" : null} onClick={handleSpanClick}>
         easy
       </span>
