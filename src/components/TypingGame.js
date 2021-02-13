@@ -9,19 +9,16 @@ import correctKeyStroke from '../sounds/correctKeyStroke2.wav';
 import incorrectKeyStroke from '../sounds/incorrectKeyStroke.wav';
 import FX from './FX';
 import GameOver from './GameOver';
-import Difficulty from './Difficulty';
 
-export default function TypingGame({ difficulty }) {
+export default function TypingGame({ difficulty, setGameStarted }) {
   const [words, setWords] = useState([]);
   const [startTime, setStartTime] = useState();
   const [letterIndex, setLetterIndex] = useState(0);
-  const [wordCount, setWordCount] = useState(0);
   const [typedCharCount, setTypedCharCount] = useState(0);
   const [correctCharCount, setCorrectCharCount] = useState(0);
   const [level, setLevel] = useState(1);
-  const [scrollSpeed, setScrollSpeed] = useState(25);
+  const [scrollSpeed, setScrollSpeed] = useState(30);
   const [gameOver, setGameOver] = useState(false);
-  const [wpm, setWpm] = useState(0);
   const [fxEnabled, setFxEnabled] = useState(false);
   const [playKeystroke] = useSound(correctKeyStroke);
   const [playMissedKeystroke] = useSound(incorrectKeyStroke);
@@ -43,8 +40,8 @@ export default function TypingGame({ difficulty }) {
   }, [setWords]);
 
   useEffect(() => {
-    buildWordList();
-  }, [buildWordList]);
+    !gameOver && buildWordList();
+  }, [buildWordList, gameOver]);
 
   useKeyPress(key => {
     !startTime && setStartTime(currentTime());
@@ -58,7 +55,6 @@ export default function TypingGame({ difficulty }) {
       if (currentWord.length === tempLetterIndex) {
         let tempWordList = words.slice();
         tempWordList.pop();
-        setWordCount(wordCount + 1);
         if (tempWordList.length === 0) {
           setLevel(level + 1);
           setWords(buildWordList());
@@ -78,7 +74,7 @@ export default function TypingGame({ difficulty }) {
     <section className="typing-game">
       <div className="game-info">
         <Level level={level} />
-        <Difficulty difficulty={difficulty} />
+        <h6>{difficulty}</h6>
         <FX handleClick={() => setFxEnabled(!fxEnabled)} fxEnabled={fxEnabled} />
       </div>
       {words.length > 0 && 
@@ -91,11 +87,11 @@ export default function TypingGame({ difficulty }) {
         />}
       {gameOver && 
         <GameOver 
-          wordCount={wordCount} 
           startTime={startTime} 
-          wpm={wpm} 
           typedCharCount={typedCharCount}
           correctCharCount={correctCharCount}
+          setGameOver={setGameOver}
+          setGameStarted={setGameStarted}
         />}
     </section>
   )

@@ -16,7 +16,6 @@ function App() {
             setDifficulty={setDifficulty}
           />
         : <TypingGame 
-            gameStarted={gameStarted}
             setGameStarted={setGameStarted}
             difficulty={difficulty} 
           />}
