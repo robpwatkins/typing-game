@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-start;
+`;
+
 const scroll = keyframes`
   from {
     transform: none;
@@ -10,7 +17,7 @@ const scroll = keyframes`
   }
 `;
 
-const Scroll = styled.div`
+const Div = styled.div`
   margin-top: -${props => props.marginTopOffset};
   animation: ${scroll} ${props => props.scrollSpeed}s linear;
   > p {
@@ -22,29 +29,25 @@ export default function CurrentWords({ words, setWords, letterIndex, scrollSpeed
   const [marginTopOffset, setMarginTopOffset] = useState('100vh');
 
   const containerRef = useRef();
-  const wordsRef = useRef();
-
+  const wordsRef = useRef();  
+  
   useEffect(() => {
     setMarginTopOffset(`${wordsRef.current.scrollHeight}px`);
-  }, [])
-
-  const scrollHeightChecker = () => {
-    let scrollHeight = containerRef.current.scrollHeight;
-    let clientHeight = containerRef.current.clientHeight;
-    if (scrollHeight > clientHeight + 5) {
-      setGameOver(true);
-      setWords([]);
+    const scrollHeightChecker = () => {
+      let scrollHeight = containerRef.current.scrollHeight;
+      let clientHeight = containerRef.current.clientHeight;
+      if (scrollHeight > clientHeight + 5) {
+        setGameOver(true);
+        setWords([]);
+      }
     }
-  }
-
-  useEffect(() => {
     let heightInterval = setInterval(scrollHeightChecker, 100);
     return () => clearInterval(heightInterval);
-  });
+  }, [setGameOver, setWords]);
 
   return (
-    <section className="words-container" ref={containerRef}>
-      <Scroll scrollSpeed={scrollSpeed} marginTopOffset={marginTopOffset} ref={wordsRef}>
+    <Section ref={containerRef}>
+      <Div scrollSpeed={scrollSpeed} marginTopOffset={marginTopOffset} ref={wordsRef}>
         {words.map((word, index) => {
           return (
             <p key={index}>{
@@ -62,7 +65,7 @@ export default function CurrentWords({ words, setWords, letterIndex, scrollSpeed
             }</p>
           )
         })}
-      </Scroll>
-    </section>
+      </Div>
+    </Section>
   )
 }
