@@ -19,6 +19,7 @@ const Scroll = styled.div`
 
 export default function CurrentWords({ words, setWords, letterIndex, scrollSpeed, setGameOver }) {  
   const containerRef = useRef();
+  const wordsRef = useRef();
 
   const scrollHeightChecker = () => {
     let scrollHeight = containerRef.current.scrollHeight;
@@ -36,7 +37,7 @@ export default function CurrentWords({ words, setWords, letterIndex, scrollSpeed
 
   return (
     <section className="words-container" ref={containerRef}>
-      <Scroll scrollSpeed={scrollSpeed}>
+      <Scroll scrollSpeed={scrollSpeed} ref={wordsRef} height={wordsRef.current && wordsRef.current.scrollHeight}>
         {words.map((word, index) => {
           return (
             <p key={index}>{
