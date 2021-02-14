@@ -5,9 +5,8 @@
 }
 
 .App {
-  position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   text-align: center;
   background-color: ghostwhite;
   min-height: 100vh;
@@ -15,53 +14,87 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(15px + 2vmin);
+  font-size: 4vh;
   font-family: 'Courier New', Courier, monospace;
   color: #282c34;
 }
 
-.start-screen > button {
-  padding: 1px;
+.start-screen > h3 {
+  font-style: italic;
+}
+
+.start-screen > span {
+  cursor: default;
+  font-size: 70%;
+}
+
+.start-screen > span:nth-last-child(odd):hover {
+  cursor: default;
+  font-weight: bold;
+}
+
+button {
+  padding: .5%;
+  font-size: 45%;
   font-family: 'Courier New', Courier, monospace;
 }
 
-aside {
+.active {
+  font-weight: bold;
+}
+
+.typing-game {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-info {
   position: absolute;
   top: 40px;
   left: 50px;
+  text-align: start;
+}
+
+.game-info > h6 {
+  font-weight: 600;
 }
 
 .fx {
-  position: absolute;
-  top: 105px;
-  left: 40px;
+  margin-left: -2%;
 }
 
-.current-words {
+.volume-mute {
+  position: absolute;
+  top: 100%;
+  left: -7%;
+}
+
+.volume-off {
+  position: absolute;
+  top: 100%;
+  left: -3%;
+}
+
+.words-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 100vh;
+  height: 100%;
   justify-content: flex-start;
 }
 
-.scrolling {
-  animation: scroll linear;
+.game-over {
+  background: ghostwhite;
 }
 
-.hidden {
-  display: none;
+.game-over > p {
+  font-size: 75%;
 }
 
-.current-words > p {
-  margin: 15px 0;
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateY(-650px)
-  }
-  100% {
-    transform: translateY(1400px);
-  }
+.button-box {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 3%;
 }
