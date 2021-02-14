@@ -10,14 +10,14 @@ import incorrectKeyStroke from '../sounds/incorrectKeyStroke.wav';
 import FX from './FX';
 import GameOver from './GameOver';
 
-export default function TypingGame({ difficulty, gameStarted, setGameStarted }) {
+export default function TypingGame({ difficulty, setGameStarted }) {
   const [words, setWords] = useState([]);
   const [startTime, setStartTime] = useState();
   const [letterIndex, setLetterIndex] = useState(0);
   const [typedCharCount, setTypedCharCount] = useState(0);
   const [correctCharCount, setCorrectCharCount] = useState(0);
   const [level, setLevel] = useState(1);
-  const [scrollSpeed, setScrollSpeed] = useState(25);
+  const [scrollSpeed, setScrollSpeed] = useState(35);
   const [gameOver, setGameOver] = useState(false);
   const [restart, setRestart] = useState(false);
   const [fxEnabled, setFxEnabled] = useState(false);
@@ -57,7 +57,7 @@ export default function TypingGame({ difficulty, gameStarted, setGameStarted }) 
   }, [restart]);
 
   useKeyPress(key => {
-    if (!gameOver) {
+    if (!gameOver && words.length > 0) {
       !startTime && setStartTime(currentTime());
       setTypedCharCount(typedCharCount + 1);
       let currentWord = words[words.length - 1];
