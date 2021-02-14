@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import styled from 'styled-components';
 import useSound from 'use-sound';
 import { fetchWords } from '../utils/fetchWords';
 import { currentTime } from '../utils/time';
@@ -9,6 +10,21 @@ import correctKeyStroke from '../sounds/correctKeyStroke2.wav';
 import incorrectKeyStroke from '../sounds/incorrectKeyStroke.wav';
 import FX from './FX';
 import GameOver from './GameOver';
+
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Div = styled.div`
+  position: absolute;
+  top: 40px;
+  left: 50px;
+  text-align: start;
+`;
 
 export default function TypingGame({ difficulty, setGameStarted }) {
   const [words, setWords] = useState([]);
@@ -86,12 +102,12 @@ export default function TypingGame({ difficulty, setGameStarted }) {
   })
 
   return (
-    <section className="typing-game">
-      <div className="game-info">
+    <Section className="typing-game">
+      <Div className="game-info">
         <Level level={level} />
         <h6>{difficulty}</h6>
         <FX handleClick={() => setFxEnabled(!fxEnabled)} fxEnabled={fxEnabled} />
-      </div>
+      </Div>
       {words.length > 0 && 
         <Words 
           words={words} 
@@ -109,6 +125,6 @@ export default function TypingGame({ difficulty, setGameStarted }) {
           setRestart={setRestart}
           setGameStarted={setGameStarted}
         />}
-    </section>
+    </Section>
   )
 }
