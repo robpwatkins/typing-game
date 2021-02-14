@@ -11,7 +11,7 @@ const scroll = keyframes`
 `;
 
 const Scroll = styled.div`
-  margin-top: -${props => props.height};
+  margin-top: -${props => props.marginTopOffset};
   animation: ${scroll} ${props => props.scrollSpeed}s linear;
   > p {
     margin: 15px 0 0 0;
@@ -19,13 +19,13 @@ const Scroll = styled.div`
 `;
 
 export default function CurrentWords({ words, setWords, letterIndex, scrollSpeed, setGameOver }) {
-  const [height, setHeight] = useState('100vh');
+  const [marginTopOffset, setMarginTopOffset] = useState('100vh');
 
   const containerRef = useRef();
   const wordsRef = useRef();
 
   useEffect(() => {
-    setHeight(`${wordsRef.current.scrollHeight}px`);
+    setMarginTopOffset(`${wordsRef.current.scrollHeight}px`);
     console.log(wordsRef.current.scrollHeight);
   }, [])
 
@@ -45,7 +45,7 @@ export default function CurrentWords({ words, setWords, letterIndex, scrollSpeed
 
   return (
     <section className="words-container" ref={containerRef}>
-      <Scroll scrollSpeed={scrollSpeed} height={height} ref={wordsRef}>
+      <Scroll scrollSpeed={scrollSpeed} marginTopOffset={marginTopOffset} ref={wordsRef}>
         {words.map((word, index) => {
           return (
             <p key={index}>{
