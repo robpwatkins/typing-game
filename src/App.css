@@ -18,17 +18,3 @@
   font-family: 'Courier New', Courier, monospace;
   color: #282c34;
 }
-
-.game-over {
-  background: ghostwhite;
-}
-
-.game-over > p {
-  font-size: 75%;
-}
-
-.button-box {
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 3%;
-}

@@ -102,8 +102,8 @@ export default function TypingGame({ difficulty, setGameStarted }) {
   })
 
   return (
-    <Section className="typing-game">
-      <Div className="game-info">
+    <Section>
+      <Div>
         <Level level={level} />
         <h6>{difficulty}</h6>
         <FX handleClick={() => setFxEnabled(!fxEnabled)} fxEnabled={fxEnabled} />

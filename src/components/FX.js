@@ -8,7 +8,7 @@ const Div = styled.div`
 
 export default function FX({ fxEnabled, handleClick }) {
   return (
-    <Div className="fx">
+    <Div>
       {fxEnabled 
         ? <VolumeUp style={{fontSize: "4vh"}} onClick={handleClick} />
         : <VolumeOff style={{fontSize: "4vh"}} onClick={handleClick} />

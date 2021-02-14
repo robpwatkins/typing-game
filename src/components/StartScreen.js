@@ -31,7 +31,7 @@ export default function StartScreen({ difficulty, setDifficulty, setGameStarted 
   }
 
   return (
-    <section className="start-screen">
+    <section>
       <h3><em>Speed Typer</em></h3>
       <Span difficulty={difficulty} innerText={"easy"} onClick={handleSpanClick}>
         easy

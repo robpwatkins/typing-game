@@ -29,28 +29,24 @@ export default function CurrentWords({ words, setWords, letterIndex, scrollSpeed
   const [marginTopOffset, setMarginTopOffset] = useState('100vh');
 
   const containerRef = useRef();
-  const wordsRef = useRef();
-
+  const wordsRef = useRef();  
+  
   useEffect(() => {
     setMarginTopOffset(`${wordsRef.current.scrollHeight}px`);
-  }, [])
-
-  const scrollHeightChecker = () => {
-    let scrollHeight = containerRef.current.scrollHeight;
-    let clientHeight = containerRef.current.clientHeight;
-    if (scrollHeight > clientHeight + 5) {
-      setGameOver(true);
-      setWords([]);
+    const scrollHeightChecker = () => {
+      let scrollHeight = containerRef.current.scrollHeight;
+      let clientHeight = containerRef.current.clientHeight;
+      if (scrollHeight > clientHeight + 5) {
+        setGameOver(true);
+        setWords([]);
+      }
     }
-  }
-
-  useEffect(() => {
     let heightInterval = setInterval(scrollHeightChecker, 100);
     return () => clearInterval(heightInterval);
-  });
+  }, [setGameOver, setWords]);
 
   return (
-    <Section className="words-container" ref={containerRef}>
+    <Section ref={containerRef}>
       <Div scrollSpeed={scrollSpeed} marginTopOffset={marginTopOffset} ref={wordsRef}>
         {words.map((word, index) => {
           return (
