@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-start;
+`;
+
 const scroll = keyframes`
   from {
     transform: none;
@@ -10,7 +17,7 @@ const scroll = keyframes`
   }
 `;
 
-const Scroll = styled.div`
+const Div = styled.div`
   margin-top: -${props => props.marginTopOffset};
   animation: ${scroll} ${props => props.scrollSpeed}s linear;
   > p {
@@ -43,8 +50,8 @@ export default function CurrentWords({ words, setWords, letterIndex, scrollSpeed
   });
 
   return (
-    <section className="words-container" ref={containerRef}>
-      <Scroll scrollSpeed={scrollSpeed} marginTopOffset={marginTopOffset} ref={wordsRef}>
+    <Section className="words-container" ref={containerRef}>
+      <Div scrollSpeed={scrollSpeed} marginTopOffset={marginTopOffset} ref={wordsRef}>
         {words.map((word, index) => {
           return (
             <p key={index}>{
@@ -62,7 +69,7 @@ export default function CurrentWords({ words, setWords, letterIndex, scrollSpeed
             }</p>
           )
         })}
-      </Scroll>
-    </section>
+      </Div>
+    </Section>
   )
 }
