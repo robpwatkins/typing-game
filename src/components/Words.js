@@ -10,7 +10,7 @@ const scroll = keyframes`
   }
 `;
 
-const Scroll = styled.div`
+const Scroll = styled.div`  
   animation: ${scroll} ${props => props.scrollSpeed}s linear;
   > p {
     margin: 15px 0 0 0;
