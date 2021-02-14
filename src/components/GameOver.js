@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { currentTime } from '../utils/time';
+import { Button } from '../components/StartScreen';
 
 export default function GameOver({
   startTime, 
@@ -23,14 +24,14 @@ export default function GameOver({
       <p>WPM: {((correctCharCount / 5) / durationInMinutes).toFixed(1)}</p>
       <p>Accuracy: {((correctCharCount * 100) / typedCharCount).toFixed(1)}%</p>
       <div className="button-box">
-        <button onClick={() => {
+        <Button onClick={() => {
           setGameOver(false)
           setRestart(true);
         }
           }>
             PLAY AGAIN
-        </button>
-        <button onClick={() => setGameStarted(false)}>START SCREEN</button>
+        </Button>
+        <Button onClick={() => setGameStarted(false)}>START SCREEN</Button>
       </div>
     </section>
   )

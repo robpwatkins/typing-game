@@ -14,6 +14,12 @@ const Span = styled.span`
   }
 `;
 
+export const Button = styled.button`
+  padding: .5%;
+  font-size: 45%;
+  font-family: 'Courier New', Courier, monospace;
+`;
+
 export default function StartScreen({ difficulty, setDifficulty, setGameStarted }) {
 
   const handleSpanClick = event => {
@@ -39,7 +45,7 @@ export default function StartScreen({ difficulty, setDifficulty, setGameStarted 
         difficult
       </Span>
       <br/>
-      <button onClick={handleStartClick}>START GAME</button>
+      <Button onClick={handleStartClick}>START GAME</Button>
     </section>
   )
 }

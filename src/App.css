@@ -19,12 +19,6 @@
   color: #282c34;
 }
 
-button {
-  padding: .5%;
-  font-size: 45%;
-  font-family: 'Courier New', Courier, monospace;
-}
-
 .active {
   font-weight: bold;
 }
