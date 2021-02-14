@@ -26,7 +26,6 @@ export default function CurrentWords({ words, setWords, letterIndex, scrollSpeed
 
   useEffect(() => {
     setMarginTopOffset(`${wordsRef.current.scrollHeight}px`);
-    console.log(wordsRef.current.scrollHeight);
   }, [])
 
   const scrollHeightChecker = () => {
