@@ -1,4 +1,18 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const Span = styled.span`
+  cursor: default;
+  font-size: 70%;
+  font-weight: ${props => props.difficulty === props.innerText ? "bold" : null};
+  &:hover {
+    cursor: default;
+    font-weight: bold;
+  }
+  &:nth-last-child(even) {
+    font-weight: normal;
+  }
+`;
 
 export default function StartScreen({ difficulty, setDifficulty, setGameStarted }) {
 
@@ -12,18 +26,18 @@ export default function StartScreen({ difficulty, setDifficulty, setGameStarted 
 
   return (
     <section className="start-screen">
-      <h3>Speed Typer</h3>
-      <span className={difficulty === "easy" ? "active" : null} onClick={handleSpanClick}>
+      <h3><em>Speed Typer</em></h3>
+      <Span difficulty={difficulty} innerText={"easy"} onClick={handleSpanClick}>
         easy
-      </span>
-      <span> | </span>
-      <span className={difficulty === "medium" ? "active" : null} onClick={handleSpanClick}>
+      </Span>
+      <Span> | </Span>
+      <Span difficulty={difficulty} innerText={"medium"} onClick={handleSpanClick}>
         medium
-      </span>
-      <span> | </span>
-      <span className={difficulty === "difficult" ? "active" : null} onClick={handleSpanClick}>
+      </Span>
+      <Span> | </Span>
+      <Span difficulty={difficulty} innerText={"difficult"} onClick={handleSpanClick}>
         difficult
-      </span>
+      </Span>
       <br/>
       <button onClick={handleStartClick}>START GAME</button>
     </section>

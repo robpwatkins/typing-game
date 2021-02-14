@@ -19,20 +19,6 @@
   color: #282c34;
 }
 
-.start-screen > h3 {
-  font-style: italic;
-}
-
-.start-screen > span {
-  cursor: default;
-  font-size: 70%;
-}
-
-.start-screen > span:nth-last-child(odd):hover {
-  cursor: default;
-  font-weight: bold;
-}
-
 button {
   padding: .5%;
   font-size: 45%;
