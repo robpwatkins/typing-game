@@ -19,7 +19,10 @@ export default function Leaderboard() {
     <LeaderboardBox>
       <h6><u>Leaderboard</u></h6>
       <div>
-        <p>Player 1: Level 10, WPM: 95, Accuracy: 95%</p>
+        <span>Level</span>
+        <span> WPM</span>
+        <span> Accuracy</span>
+        <p>10 95 95%</p>
         <p>Player 1: Level 10, WPM: 95, Accuracy: 95%</p>
         <p>Player 1: Level 10, WPM: 95, Accuracy: 95%</p>
         <p>Player 1: Level 10, WPM: 95, Accuracy: 95%</p>
