@@ -1,35 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Div = styled.div`
-  position: fixed;
-  top: 10%;
+const LeaderboardBox = styled.div`
   display: flex;
   flex-direction: column;
-  height: 21vh;
-  overflow: scroll;
-  align-items: flex-start;
-  > p {
+  /* box-shadow: inset 0px -10px 10px -10px black; */
+  > div {
+    overflow: scroll;
+    text-align: start;
     font-size: 55%;
+    padding: 3px;
+    /* border: 1px solid black; */
   }
 `;
 
 export default function Leaderboard() {
   return (
-    <Div>
-      <h5><u>Leaderboard</u></h5>
-      <p>Player 1: score</p>
-      <p>Player 1: score</p>
-      <p>Player 1: score</p>
-      <p>Player 1: score</p>
-      <p>Player 1: score</p>
-      <p>Player 1: score</p>
-      <p>Player 1: score</p>
-      <p>Player 1: score</p>
-      <p>Player 2: score</p>
-      <p>Player 3: score</p>
-      <p>Player 4: score</p>
-      <p>Player 5: score</p>
-    </Div>
+    <LeaderboardBox>
+      <h6><u>Leaderboard</u></h6>
+      <div>
+        <p>Player 1: Level 10, WPM: 95, Accuracy: 95%</p>
+        <p>Player 1: Level 10, WPM: 95, Accuracy: 95%</p>
+        <p>Player 1: Level 10, WPM: 95, Accuracy: 95%</p>
+        <p>Player 1: Level 10, WPM: 95, Accuracy: 95%</p>
+        <p>Player 1: Level 10, WPM: 95, Accuracy: 95%</p>
+      </div>
+    </LeaderboardBox>
   )
 }

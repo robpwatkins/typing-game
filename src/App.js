@@ -13,18 +13,19 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Div = styled.div`
-  width: 100%;
-  height: 100vh;
-  text-align: center;
-  background-color: ghostwhite;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
   justify-content: center;
-  font-size: 4vh;
+  align-items: center;
+  text-align: center;
   font-family: 'Courier New', Courier, monospace;
+  font-size: 4vh;
   color: #282c34;
+  background-color: ghostwhite;
+  /* padding-bottom: 15%; */
 `;
 
 function App() {

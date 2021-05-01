@@ -5,7 +5,10 @@ import Leaderboard from './Leaderboard';
 const Section = styled.section`
   display: flex;
   flex-direction: column;
+  height: 55%;
+  justify-content: space-around;
   align-items: center;
+  margin-top: 10%;
 `;
 
 const Span = styled.span`
@@ -39,7 +42,6 @@ export default function StartScreen({ difficulty, setDifficulty, setGameStarted 
 
   return (
     <Section>
-      <Leaderboard />
       <div>
         <h3><em>Speed Typer</em></h3>
         <Span difficulty={difficulty} innerText={"easy"} onClick={handleSpanClick}>
@@ -56,6 +58,7 @@ export default function StartScreen({ difficulty, setDifficulty, setGameStarted 
         <br/>
         <Button onClick={handleStartClick}>START GAME</Button>
       </div>
+      <Leaderboard />
     </Section>
   )
 }
