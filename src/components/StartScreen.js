@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Leaderboard from './Leaderboard';
 
 const Span = styled.span`
   cursor: default;
@@ -32,6 +33,7 @@ export default function StartScreen({ difficulty, setDifficulty, setGameStarted 
 
   return (
     <section>
+      <Leaderboard />
       <h3><em>Speed Typer</em></h3>
       <Span difficulty={difficulty} innerText={"easy"} onClick={handleSpanClick}>
         easy
