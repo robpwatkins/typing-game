@@ -6,22 +6,30 @@ const Div = styled.div`
   top: 10%;
   display: flex;
   flex-direction: column;
+  height: 21vh;
+  overflow: scroll;
   align-items: flex-start;
-`;
-
-const Span = styled.span`
-  font-weight: normal;
+  > p {
+    font-size: 55%;
+  }
 `;
 
 export default function Leaderboard() {
   return (
     <Div>
-      <h4>Leaderboard</h4>
-      <h6>Player 1:<Span> score</Span></h6>
-      <h6>Player 2:<Span> score</Span></h6>
-      <h6>Player 3:<Span> score</Span></h6>
-      <h6>Player 4:<Span> score</Span></h6>
-      <h6>Player 5:<Span> score</Span></h6>
+      <h5><u>Leaderboard</u></h5>
+      <p>Player 1: score</p>
+      <p>Player 1: score</p>
+      <p>Player 1: score</p>
+      <p>Player 1: score</p>
+      <p>Player 1: score</p>
+      <p>Player 1: score</p>
+      <p>Player 1: score</p>
+      <p>Player 1: score</p>
+      <p>Player 2: score</p>
+      <p>Player 3: score</p>
+      <p>Player 4: score</p>
+      <p>Player 5: score</p>
     </Div>
   )
 }
