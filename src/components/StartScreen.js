@@ -1,27 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import Leaderboard from './Leaderboard';
+import Selection from './Selection';
 
-const Section = styled.section`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 55%;
   justify-content: space-around;
   align-items: center;
   margin-top: 10%;
-`;
-
-const Span = styled.span`
-  cursor: default;
-  font-size: 70%;
-  font-weight: ${props => props.difficulty === props.innerText ? "bold" : null};
-  &:hover {
-    cursor: default;
-    font-weight: bold;
-  }
-  &:nth-last-child(even) {
-    font-weight: normal;
-  }
 `;
 
 export const Button = styled.button`
@@ -32,33 +20,19 @@ export const Button = styled.button`
 
 export default function StartScreen({ difficulty, setDifficulty, setGameStarted }) {
 
-  const handleSpanClick = event => {
-    setDifficulty(event.target.innerText);
-  }
-
-  const handleStartClick = () => {
+  const handleClick = () => {
     difficulty && setGameStarted(true);
   }
 
   return (
-    <Section>
+    <Container>
       <div>
         <h3><em>Speed Typer</em></h3>
-        <Span difficulty={difficulty} innerText={"easy"} onClick={handleSpanClick}>
-          easy
-        </Span>
-        <Span> | </Span>
-        <Span difficulty={difficulty} innerText={"medium"} onClick={handleSpanClick}>
-          medium
-        </Span>
-        <Span> | </Span>
-        <Span difficulty={difficulty} innerText={"difficult"} onClick={handleSpanClick}>
-          difficult
-        </Span>
+        <Selection difficulty={difficulty} setDifficulty={setDifficulty} />
         <br/>
-        <Button onClick={handleStartClick}>START GAME</Button>
+        <Button onClick={handleClick}>START GAME</Button>
       </div>
       <Leaderboard />
-    </Section>
+    </Container>
   )
 }

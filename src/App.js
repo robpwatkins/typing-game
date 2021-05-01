@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Div = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -33,7 +33,7 @@ function App() {
   const [difficulty, setDifficulty] = useState(null);
 
   return (
-    <Div className="App">
+    <Container className="App">
       <GlobalStyle />
       {!gameStarted 
         ? <StartScreen
@@ -46,7 +46,7 @@ function App() {
             setGameStarted={setGameStarted}
             difficulty={difficulty} 
           />}
-    </Div>
+    </Container>
   );
 }
 
