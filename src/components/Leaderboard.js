@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Login from './Login';
 
 const LeaderboardBox = styled.div`
   display: flex;
@@ -24,7 +25,7 @@ export default function Leaderboard() {
       <h6><u>Leaderboard</u></h6>
       <div>
       </div>
-      <p><u>Sign in</u><span> to join the leaderboard!</span></p>
+      <Login />
     </LeaderboardBox>
   )
 }
