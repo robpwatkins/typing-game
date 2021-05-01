@@ -2,6 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import Leaderboard from './Leaderboard';
 
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const Span = styled.span`
   cursor: default;
   font-size: 70%;
@@ -32,22 +38,24 @@ export default function StartScreen({ difficulty, setDifficulty, setGameStarted 
   }
 
   return (
-    <section>
+    <Section>
       <Leaderboard />
-      <h3><em>Speed Typer</em></h3>
-      <Span difficulty={difficulty} innerText={"easy"} onClick={handleSpanClick}>
-        easy
-      </Span>
-      <Span> | </Span>
-      <Span difficulty={difficulty} innerText={"medium"} onClick={handleSpanClick}>
-        medium
-      </Span>
-      <Span> | </Span>
-      <Span difficulty={difficulty} innerText={"difficult"} onClick={handleSpanClick}>
-        difficult
-      </Span>
-      <br/>
-      <Button onClick={handleStartClick}>START GAME</Button>
-    </section>
+      <div>
+        <h3><em>Speed Typer</em></h3>
+        <Span difficulty={difficulty} innerText={"easy"} onClick={handleSpanClick}>
+          easy
+        </Span>
+        <Span> | </Span>
+        <Span difficulty={difficulty} innerText={"medium"} onClick={handleSpanClick}>
+          medium
+        </Span>
+        <Span> | </Span>
+        <Span difficulty={difficulty} innerText={"difficult"} onClick={handleSpanClick}>
+          difficult
+        </Span>
+        <br/>
+        <Button onClick={handleStartClick}>START GAME</Button>
+      </div>
+    </Section>
   )
 }
