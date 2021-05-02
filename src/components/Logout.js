@@ -15,7 +15,7 @@ export default function Logout() {
     logout();
   }
 
-  const { user, logout } = useAuth0();
+  const { logout } = useAuth0();
 
   return (
     <Container>

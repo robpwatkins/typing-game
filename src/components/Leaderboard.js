@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useAuth0 } from '@auth0/auth0-react';
 import Login from './Login';
@@ -13,13 +13,28 @@ const Container = styled.div`
   /* box-shadow: inset 0px -10px 10px -10px black; */
 `;
 
+
 export default function Leaderboard() {
+  const [allPlayers, setAllPlayers] = useState([]);
   const { isAuthenticated } = useAuth0();
+  
+  const getAllPlayers = async () => {
+    const resp = await fetch('/api/getPlayers');
+    const playersArr = await resp.json();
+    console.log(playersArr);
+    // const allPlayers = playersArr.map(player => player.data).sort((a, b) => (a.high_score < b.high_score) ? 1 : -1);
+    setAllPlayers(allPlayers);
+    // setTopFive(allPlayers.filter((_, idx) => idx <= 4));
+  }
+  
+  useEffect(() => {
+    getAllPlayers();
+  }, [])
 
   return (
     <Container>
       <h6><u>Leaderboard</u></h6>
-      <Rankings />
+      <Rankings allPlayers={allPlayers} />
       {!isAuthenticated ? <Login /> : <Logout />}
     </Container>
   )

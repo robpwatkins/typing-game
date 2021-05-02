@@ -8,9 +8,11 @@ const Container = styled.div`
   padding: 3px;
 `;
 
-export default function Rankings() {
+export default function Rankings({ allPlayers }) {
+  // console.log(allPlayers);
   return (
     <Container>
+
     </Container>
   )
 }
