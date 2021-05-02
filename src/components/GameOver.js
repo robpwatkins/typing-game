@@ -9,21 +9,21 @@ const Container = styled.div`
   flex-direction: column;
   height: 55%;
   justify-content: space-around;
+  align-items: center;
   margin-top: 35%;
 `;
 
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   .stats {
     font-size: 70%;
   }
-  .buttons {
-      display: flex;
-      width: 80%;
-      justify-content: space-evenly;
-      margin-top: 3%;
+  .left {
+    margin-right: 5px;
+  }
+  .right {
+    margin-left: 5px;
   }
 `;
 
@@ -58,11 +58,11 @@ export default function GameOver({
           <span className="stats"> | </span>
           <span className="stats">accuracy: {((correctCharCount * 100) / typedCharCount).toFixed(1)}%</span>
         </div>
-        <div className="buttons">
-          <Button onClick={handleClick}>
+        <div>
+          <Button className="left" onClick={handleClick}>
               PLAY AGAIN
           </Button>
-          <Button onClick={() => setGameStarted(false)}>START SCREEN</Button>
+          <Button className="right" onClick={() => setGameStarted(false)}>START SCREEN</Button>
         </div>
       </Content>
       <Leaderboard />
