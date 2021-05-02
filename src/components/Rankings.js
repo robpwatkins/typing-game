@@ -6,13 +6,21 @@ const Container = styled.div`
   text-align: start;
   margin-bottom: 5px;
   padding: 3px;
+  font-size: 55%;
 `;
 
 export default function Rankings({ allPlayers }) {
-  // console.log(allPlayers);
   return (
     <Container>
-
+      {allPlayers.length &&
+        allPlayers.map((player, idx) => {
+          return (
+            <div key={idx}>
+              <span>{player.name}: {player.high_score}</span>
+            </div>
+          )
+        })
+      }
     </Container>
   )
 }
