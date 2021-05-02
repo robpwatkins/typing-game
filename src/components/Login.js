@@ -4,6 +4,9 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   font-size: 55%;
+  > u {
+    cursor: pointer;
+  }
 `;
 
 export default function Login() {

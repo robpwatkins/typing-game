@@ -25,7 +25,6 @@ const Container = styled.div`
   font-size: 4vh;
   color: #282c34;
   background-color: ghostwhite;
-  /* padding-bottom: 15%; */
 `;
 
 function App() {
