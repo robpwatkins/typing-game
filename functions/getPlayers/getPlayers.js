@@ -6,7 +6,6 @@ const { Map, Paginate, Match, Index, Lambda, Get, Var } = faunadb.query
 
 const handler = async (event) => {
   try {
-    console.log('heyoo');
     const req = await faunaClient.query(
       Map(
         Paginate(
