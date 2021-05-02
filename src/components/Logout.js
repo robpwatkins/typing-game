@@ -2,10 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { useAuth0 } from '@auth0/auth0-react';
 
-const Content = styled.div`
-  text-decoration: underline;
+const Container = styled.div`
   font-size: 55%;
-  cursor: pointer;
+  > u {
+    cursor: pointer;
+  }
 `;
 
 export default function Logout() {
@@ -14,7 +15,12 @@ export default function Logout() {
     logout();
   }
 
-  const { logout } = useAuth0();
+  const { user, logout } = useAuth0();
 
-  return <Content onClick={handleClick}>logout</Content>;
+  return (
+    <Container>
+      <p>Welcome, {user.nickname}!</p>
+      <u onClick={handleClick}>Logout</u>
+    </Container>
+  )
 }

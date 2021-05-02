@@ -45,7 +45,6 @@ export default function CurrentWords({ words, setWords, letterIndex, scrollSpeed
     return () => clearInterval(heightInterval);
   }, [setGameOver, setWords]);
 
-  console.log(scrollSpeed);
   return (
     <Container ref={containerRef}>
       <Content scrollSpeed={scrollSpeed} marginTopOffset={marginTopOffset} ref={wordsRef}>

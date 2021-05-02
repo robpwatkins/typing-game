@@ -9,6 +9,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 21vh;
+  border: 2px solid black;
   /* box-shadow: inset 0px -10px 10px -10px black; */
 `;
 

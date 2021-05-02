@@ -10,7 +10,7 @@ const Container = styled.div`
 `;
 
 export default function Login() {
-  const { user, isAuthenticated, loginWithRedirect } = useAuth0();
+  const { loginWithRedirect } = useAuth0();
 
   return (
     <Container>
