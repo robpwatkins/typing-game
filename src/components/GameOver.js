@@ -13,17 +13,14 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   .stats {
     font-size: 70%;
   }
   .buttons {
     display: flex;
-    width: 70%;
+    width: 100%;
     justify-content: space-evenly;
-    padding-top: 3%;
+    padding-top: 5%;
   }
 `;
 
@@ -52,11 +49,8 @@ export default function GameOver({
     <Container>
       <Content>
         <h3><em>Game Over!</em></h3>
-        <div>
-          <span className="stats">wpm: {((correctCharCount / 5) / durationInMinutes).toFixed(1)}</span>
-          <span className="stats"> | </span>
-          <span className="stats">accuracy: {((correctCharCount * 100) / typedCharCount).toFixed(1)}%</span>
-        </div>
+        <p className="stats">wpm: {((correctCharCount / 5) / durationInMinutes).toFixed(1)}</p>
+        <p className="stats">accuracy: {((correctCharCount * 100) / typedCharCount).toFixed(1)}%</p>
         <div className="buttons">
           <Button onClick={handleClick}>
               PLAY AGAIN
