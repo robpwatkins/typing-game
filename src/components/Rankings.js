@@ -16,7 +16,7 @@ export default function Rankings({ allPlayers }) {
         allPlayers.map((player, idx) => {
           return (
             <div key={idx}>
-              <span>{player.name}: {player.high_score}</span>
+              <span>{player.nickname}: {player.high_score}</span>
             </div>
           )
         })
