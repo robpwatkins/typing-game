@@ -9,7 +9,7 @@ const Container = styled.div`
   height: 55%;
   justify-content: space-around;
   align-items: center;
-  margin-top: 10%;
+  /* margin-top: 10%; */
 `;
 
 export const Button = styled.button`
