@@ -8,8 +8,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 55%;
-  justify-content: space-evenly;
-  margin-top: 10%;
+  justify-content: space-around;
+  margin-top: 35%;
 `;
 
 const Content = styled.div`

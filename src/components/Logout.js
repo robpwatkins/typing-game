@@ -19,7 +19,7 @@ export default function Logout() {
 
   return (
     <Container>
-      <p>Welcome, {user.nickname}!</p>
+      {/* <p>Welcome, {user.nickname}!</p> */}
       <u onClick={handleClick}>Logout</u>
     </Container>
   )
