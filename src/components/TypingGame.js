@@ -18,7 +18,7 @@ const Container = styled.div`
   align-items: center;
 `;
 
-export default function TypingGame({ difficulty, setGameStarted }) {
+export default function TypingGame({ difficulty, setGameStarted, currentPlayer }) {
   const [words, setWords] = useState([]);
   const [startTime, setStartTime] = useState();
   const [letterIndex, setLetterIndex] = useState(0);
@@ -117,6 +117,8 @@ export default function TypingGame({ difficulty, setGameStarted }) {
           setGameOver={setGameOver}
           setRestart={setRestart}
           setGameStarted={setGameStarted}
+          currentPlayer={currentPlayer}
+          level={level}
         />}
     </Container>
   )

@@ -81,7 +81,8 @@ function App() {
         : <TypingGame 
             gameStarted={gameStarted}
             setGameStarted={setGameStarted}
-            difficulty={difficulty} 
+            difficulty={difficulty}
+            currentPlayer={currentPlayer}
           />}
     </Container>
   );

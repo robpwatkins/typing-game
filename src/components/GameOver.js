@@ -30,13 +30,28 @@ export default function GameOver({
   correctCharCount, 
   setGameOver, 
   setRestart, 
-  setGameStarted 
+  setGameStarted,
+  currentPlayer,
+  level
 }) {
   const [endTime, setEndTime] = useState();
   
   useEffect(() => {
     setEndTime(currentTime());
   }, [setEndTime])
+
+  const updateLevel = async () => {
+    fetch('/api/updatePlayer', {
+      method: 'PATCH',
+      body: JSON.stringify({
+        currentPlayer, level
+      })
+    })
+  }
+
+  useEffect(() => {
+    updateLevel();
+  })
 
   const handleClick = () => {
     setGameOver(false)
@@ -45,6 +60,7 @@ export default function GameOver({
 
   const durationInMinutes = (endTime - startTime) / 60000.0;
 
+  console.log(currentPlayer.data);
   return (
     <Container>
       <Content>
