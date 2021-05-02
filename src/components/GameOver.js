@@ -10,7 +10,6 @@ const Container = styled.div`
   height: 55%;
   justify-content: space-around;
   align-items: center;
-  /* margin-top: 32%; */
 `;
 
 const Content = styled.div`
@@ -27,7 +26,6 @@ const Content = styled.div`
     padding-top: 3%;
   }
 `;
-
 
 export default function GameOver({
   startTime, 

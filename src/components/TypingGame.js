@@ -59,7 +59,7 @@ export default function TypingGame({ difficulty, setGameStarted }) {
       setTypedCharCount(0);
       setCorrectCharCount(0);
       setLevel(1);
-      setScrollSpeed(25);
+      setScrollSpeed(35);
       setRestart(false);
     }
   }, [restart]);
