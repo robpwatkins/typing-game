@@ -12,14 +12,14 @@ const Container = styled.div`
 export default function Rankings({ allPlayers }) {
   return (
     <Container>
-      {allPlayers.length &&
-        allPlayers.map((player, idx) => {
+      {allPlayers.length
+        ? (allPlayers.map((player, idx) => {
           return (
             <div key={idx}>
               <span>{player.nickname}: level {player.level}</span>
             </div>
           )
-        })
+        })) : null
       }
     </Container>
   )
