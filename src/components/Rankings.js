@@ -16,7 +16,7 @@ export default function Rankings({ allPlayers }) {
         allPlayers.map((player, idx) => {
           return (
             <div key={idx}>
-              <span>{player.nickname}: {player.level}</span>
+              <span>{player.nickname}: level {player.level}</span>
             </div>
           )
         })

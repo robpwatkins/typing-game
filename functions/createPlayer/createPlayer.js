@@ -14,7 +14,7 @@ const handler = async (event) => {
         {
           data: {
             nickname,
-            level: 0
+            level: 1
           }
         }
       )
