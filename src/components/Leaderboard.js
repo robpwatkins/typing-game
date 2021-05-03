@@ -21,7 +21,7 @@ export default function Leaderboard() {
   const getAllPlayers = async () => {
     const resp = await fetch('/api/getPlayers');
     const playersArr = await resp.json();
-    const allPlayers = playersArr.map(player => player.data).sort((a, b) => (a.high_score < b.high_score) ? 1 : -1);
+    const allPlayers = playersArr.map(player => player.data).sort((a, b) => (a.level < b.level) ? 1 : -1);
     setAllPlayers(allPlayers);
     // setTopFive(allPlayers.filter((_, idx) => idx <= 4));
   }
